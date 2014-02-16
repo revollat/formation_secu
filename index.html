@@ -1,2 +1,353 @@
-Hello world !
-test !!
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Introduction à git / GitHub</title>
+
+    <meta name="description" content="Introduction to Git Remote Repositories">
+    <meta name="author" content="Luis Ibanez">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="revealjs/css/reveal.min.css">
+    <link rel="stylesheet" href="revealjs/css/theme/sky.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+        document.write( '<link rel="stylesheet" href="revealjs/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+</head>
+
+<body>
+
+<div class="reveal">
+
+<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+
+
+<section>
+    <h2>Introduction à git / github</h2>
+    <a href="#" class="image">
+        <img src="images/Git-Logo.png">
+    </a>
+
+    <aside class="notes">
+        <ul>
+            <li>zoom avec alt+click</li>
+        </ul>
+    </aside>
+
+</section>
+
+<section data-transition="zoom">
+
+    <section>
+        <p><i>Attention : ceci n'est pas un cours exhaustif !</i></p>
+        <br><br>
+        <h3>Mon objectif : </h3>
+        <ul>
+            <li>Vous faire appréhender la puissance et l'utilité de git</li>
+            <li>Il y aura des simplifications pour aller droit au but !</li>
+        </ul>
+    </section>
+
+    <section data-background="images/screenshot.png">
+
+        <img src="images/screenshot.png">
+        <br><br>
+        <p>Beaucoup d'exemples sont montré en ligne de commande : Pas de panique :)</p>
+        <img src="images/Don_t_panic.jpg" alt=""/>
+        <br>
+        <ul>
+            <li>On est au coeur des choses, ça facilite la compréhension</li>
+            <li>Une fois qu'on a compris le principe, on prend une jolie interface qui fait la meme choses avec des clics !!</li>
+        </ul>
+    </section>
+
+</section>
+
+
+<section>
+
+    <section>
+        <h1>Intro et historique</h1>
+    </section>
+
+
+    <section>
+        Git est un système de getion de code source décentralisé
+        date de 2005 créer par linus torvald <br>
+        <img src="images/34163-linux-torvalds.jpg" alt=""/>
+
+        <aside class="notes">
+            on gère toute sorte de projets, pas que du code source (documentation, liste de ebook, ...)
+        </aside>
+
+    </section>
+
+    <section>
+        <h1>Git permet de :</h1>
+        <ul>
+            <li>Manipuler vos données sans peur de les "perdre" (Historique des modifications dans Git)</li>
+            <li>Tester plusieurs idées en "parallèle" ("Branches" dans Git)</li>
+            <li>Travailler là dessus avec vos amis (Git "Remote")</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Il y a 3 types de personnes dans le monde :</h2>
+        <ul>
+            <li>Ceux qui utilisent Git</li>
+            <li>Ceux qui utilise autre chose que Git</li>
+            <li>Ceux qui n'utilise pas d'outils pour le travail collaboratif et décentralisé !</li>
+        </ul>
+    </section>
+
+</section>
+
+<section>
+    <h2>Pourquoi utiliser GIT ?</h2>
+    <ul>
+        <li>Simplicité (après courbe d'aprentissage)</li>
+        <li>Rapidité</li>
+        <li>Beaucoup utilisé pour l'open source</li>
+        <li>Beaucoup de ressources d'aide et aide en ligne</li>
+        <li>La limite est votre imagination ! (plein de projets originaux détournent ("hack") l'utilisation de Git : liste partagés, wiki, ...)</li>
+    </ul>
+</section>
+
+<section>
+
+    <section>
+        <h1>Utlisation en local</h1>
+        <p>La pratique et ensuite la théorie ...</p>
+    </section>
+
+    <section>
+        <p>Nous allons créer un petit site statique (en HTML5) pour les besoin de la démo.</p>
+        <p>On commence avec un répértoire dans lequel nous avons notre projet</p>
+        <img src="images/Capture.JPG" alt=""/>
+    </section>
+
+    <section>
+        <p>On veux gérer notre projet avec Git, le but de cette présentation :) </p>
+        <pre><code data-trim>git init</code></pre>
+        <p>Toues les commandes sont de la forme "git commande_git". Pour avoir de l'aide sur une commande particulière :</p>
+        <pre><code data-trim>git help commande_git</code></pre>
+        <p>exemple pour l'aide sur init :</p>
+        <pre><code data-trim>git help init</code></pre>
+    </section>
+
+    <section>
+        <img src="images/Capture2.JPG" alt=""/>
+        <ul>
+            <li>La commande "git init" va simplement créer un dossier ".git" à la racine de notre projet.<br>TOUT ce qui est necessaire à la gestion de notre projet par Git se trouve dedans !</li>
+            <li>Cette opération peut etre effectuée dans un dossier contenant déja des fichiers ou bien dans un dossier vide</li>
+        </ul>
+
+    </section>
+
+    <section>
+        <p>On peut faire la meme chose via une interface graphique (Clients Git gratuits/Open Source pour Windows, Linux, MacOS, ...)</p>
+        <img src="images/Capture3.JPG" alt=""/>
+        <img src="images/Capture4.JPG" alt=""/>
+    </section>
+
+    <section>
+        <p>Nous allons maintenant ajouter les 3 fichiers dans Git</p>
+        <img src="images/Capture5.JPG" alt=""/>
+        <img src="images/Capture6.JPG" alt=""/>
+    </section>
+
+    <section>
+        <p>Encore une fois, nous aurions pu faire ça avec une interface graphique (clic, clic, clic, :) <br><br> Dans les exemples suivants, je vais me concentrer sur la ligne de comande qui constitue le coeur de git car tous ce que fais l'interface graphique repose sur les commande "git" en arrière plan et la ligne de commade est BEAUCOUP plus puissante que les interfaces graphiques : </p>
+        <img src="images/Capture7.JPG" alt=""/>
+        <img src="images/Capture8.JPG" alt=""/>
+    </section>
+
+    <section>
+        <p>Maintenant que nos fichiers sont "dans" Git, que se passe t-il si on en modifie un ?</p>
+        <img src="images/Capture9.JPG" alt=""/>
+        <p>On refait les meme commande "git add" et "git commit" pour avoir un répértoire de travail "propre"</p>
+        <img src="images/Capture10.JPG" alt=""/>
+    </section>
+
+    <section>
+        <h1>Quel est le workflow d'une utilisation classique de Git ?</h1>
+    </section>
+
+    <section data-background="images/git-tutorial-basics-add-addsnapshot.png">
+        <img src="images/18333fig0106-tn.png" alt=""/>
+        <ol>
+            <li>Vous travaillez sur votre projet depuis votre "working directory" (modifications atomique)</li>
+            <li>Vous ajoutez les fichiers dans la zone d'index ou "stagging area" en anglais</li>
+            <li>Vous faites un "commit" (litéralement == "commettre") qui prend les ficheirs située dans la zone d'index et les enregistre de façon permanente dans la "repository" Git</li>
+        </ol>
+    </section>
+
+    <section>
+        <!--<img src="images/18333fig0201-tn.png" alt=""/>-->
+        <!--<img src="images/git-transport.png" alt=""/>-->
+        <p>Au début il y a beaucoup de vocabulaire à retenir pour comprendre Git : working directory, Stagging area, commit, repository, ... Mais rassurez vous : très rapidement ces concepts deviennent concrets et facile à utiliser</p>
+        <p>Ce qu'il faut retenir pour le moment, c'est que la zone d'index (ou stagging area) permet de selectionner finement ce que l'on veux entreposer dans git (Repository) de façon permanante </p>
+        <p>Mais retournons à notre projet : nous avons effectuer 2 fois la commande "git commit", voyons ce que contient l' "historique"</p>
+    </section>
+
+    <section>
+        <pre><code data-trim>git log</code></pre>
+        <img src="images/Capture11.JPG" alt=""/>
+        <img src="images/Capture12.JPG" alt=""/>
+        <p>Nous voyons ici nos 2 commit (identifiés par des numéros) qui representent l'état de notre arboresence lorsque nous avons fait le commit, en ce moment nous pointons en haut de la pile, le le dernier commt (branche "master")</p>
+        <br><br>
+        <p>Voyons cela de plus près ...</p>
+    </section>
+
+    <section>
+        <h2>Que se passe t-il en coulisse ?</h2>
+        <p>Si vous arrivez à avoir une image correcte de la façon dont Git fonctionne en interne tout vous paraitra clair et logique par la suite !!!</p>
+        <img src="images/1301101599_1373910340.jpg" alt=""/>
+    </section>
+
+    <section>
+        <p>Voila comment git enregistre les données</p>
+        <img src="images/objects-example.png" alt=""/>
+    </section>
+
+    <section>
+        <pre><code data-trim>git cat-file</code></pre>
+        <img src="images/Capture13.JPG" alt=""/>
+    </section>
+
+
+</section>
+
+<section>
+
+    <section>
+        <h1>Utlisation en mode collaboratif / distribué</h1>
+    </section>
+
+</section>
+
+<section>
+
+    <section>
+        <h1>Utlisation de GitHub</h1>
+    </section>
+
+</section>
+
+<section>
+    <h3>Add the Remote repository</h3>
+          <pre><code data-trim>
+              git remote add luisgithub git@github.com:luisibanez/Git-Branchy-Story-Exercise-02.git
+          </code></pre>
+</section>
+
+<section>
+    <h2>Add Remote</h2>
+    <h2>Repositories</h2>
+    <p>Work with your Team</p>
+    <ul>
+        <li>Ask team members for their fork address
+        <li>Add their address as a remote
+        <li>Name the remotes after their first names
+    </ul>
+</section>
+
+
+<section>
+    <h3>Your push may fail... </h3>
+    <h4>with a message like this</h4>
+          <pre><code data-trim contenteditable>
+              ! [rejected]        master -> master (non-fast-forward)
+              error: failed to push some refs to 'git@github.com:ossp/Git-Branchy-Story-Exercise-01.git'
+              hint: Updates were rejected because a pushed branch tip is behind its remote
+              hint: counterpart. Check out this branch and merge the remote changes
+              hint: (e.g. 'git pull') before pushing again.
+              hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+          </code></pre>
+</section>
+
+<section>
+    <h3>This just means</h3>
+    <h3>than someone else</h3>
+    <h3>pushed before you</h3>
+</section>
+
+<section>
+    <h3>so now</h3>
+    <h3>you have to update</h3>
+    <h3>your local repository</h3>
+</section>
+
+<section>
+    <h4>Update With the Command</h4>
+          <pre><code data-trim contenteditable>
+              git pull origin master
+          </code></pre>
+    <h4>and then try again the Command</h4>
+          <pre><code data-trim contenteditable>
+              git push origin master
+          </code></pre>
+</section>
+
+
+</div>
+
+</div>
+
+<script src="revealjs/lib/js/head.min.js"></script>
+<script src="revealjs/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+//          // The "normal" size of the presentation, aspect ratio will be preserved
+//          // when the presentation is scaled to fit different resolutions. Can be
+//          // specified using percentage units.
+//          width: 960,
+//          height: 700,
+//
+//          // Factor of the display size that should remain empty around the content
+//          margin: 0.1,
+//
+//          // Bounds for smallest/largest possible scale to apply to content
+//          minScale: 0.2,
+//          maxScale: 1.0
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: 'revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: 'revealjs/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'revealjs/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: 'revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: 'revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: 'revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
