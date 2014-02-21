@@ -41,11 +41,19 @@
 <section>
 
     <section>
-        <h1>Introduction</h1>
+        <h1>INTRO</h1>
     </section>
 
-    <section data-transition="zoom">
-        <p>f zeugf ezugf zeuigfzeiufgze fizeu g</p>
+    <section>
+        le but du cours n'est pas d'amasser des connaissances, mais d'avoir une vue d'ensemble des notions de sécurité informatique appliqué aux applications web.
+        Bien sur nous allons détailler certains point. Quelque'un vous interessreons d'autres moins. L'obectif est de vous guider vers les bonnes pratiques lorsque vous aurez à faire des choix :
+        - En tant que développeur
+        - Admin réseau/ systeme
+
+        http://www.evolutionoftheweb.com/
+        http://www.tiki-toki.com/timeline/entry/37263/Politics-and-the-Internet
+        http://www.internetsociety.org/internet/what-internet/history-internet
+
     </section>
 
 </section>
@@ -56,7 +64,24 @@
         <aside class="notes">
             Chronologie qui va permettre de poser un peu de vocabulaire et revenir sur les concepts de base d'Internet et de la sécurité.
         </aside>
-        <h1>Historique d'Internet et de la sécurité</h1>
+        <h1>La préhistoire ...</h1>
+    </section>
+
+    <section>
+        <h2>19 ème sciècle</h2>
+        <p class="fragment" data-fragment-index="1">Ada Lovelace publie les premiers algorithmes pour la machine analytique de Charles Babbage (cf. http://fr.wikipedia.org/wiki/Charles_Babbage#La_machine_analytique)</p>
+    </section>
+
+    <section>
+        <h2>Durant la seconde guerre mondiale</h2>
+        <p class="fragment" data-fragment-index="1">
+            Alan Turing (machine de Turing)<br>
+            Cryptanalyse à Bletchley Park; Cassage de la sécurité d'Enigma avec les tout premiers ordinateurs:  BOMBE (ordinateur meqanique), Colossus (ordinateur electronique)
+        </p>
+    </section>
+
+    <section>
+        <h1>Une brève histoire d'Internet et de la sécurité</h1>
     </section>
 
     <section>
@@ -99,6 +124,64 @@
         <p class="fragment" data-fragment-index="1">2001 : création de wikipedia</p>
         <p class="fragment roll-in" data-fragment-index="2">Le Piratage devient une "industrie" : Adware, spyware, spam, phishing ...</p>
         <p class="fragment roll-in" data-fragment-index="3">Naissance des zero day attacks, rootkits, rogue antispyware, clickjacking, ...</p>
+    </section>
+
+</section>
+
+
+<section>
+
+    <section data-background="https://v4s.yimg.com/so/7274/7573243044_e8a04695cb_c.jpg">
+        <aside class="notes">
+            Rapide tour des techno qui font fonctionner le réseau.
+        </aside>
+        <h1 style="color: white;">Techno Internet</h1>
+    </section>
+
+    <section>
+
+        <p>Inter-Net : Réseaux interconnectés, 40.000 opérateurs AS (Autonomous System)</p>
+        <br>
+        <p class="fragment" data-fragment-index="1">
+            Qui maitre / controle Internet ?<br>
+            => Personne car (Controle <==> Pouvoir de détruire) et personne ne peut "détuire" internet (Mythe du "switch internet")
+        </p>
+        <br>
+        <p class="fragment" data-fragment-index="2">
+            Si on coupe l'Internet en 2 on se retouve avec 2 réseau indépendant (comme le corail)<br>
+            => Pas de centre : on peut enlever n'importe quell partie ça continue de marcher.<br>
+            => Evidemment vous ne pourrais alors plus accéder à certaine parties du réseau !
+        </p>
+        <br>
+        <p class="fragment" data-fragment-index="3">Quand vous allumez votre modem vous agrandissez le réseau Internet, lorsque vous l'éteigniez vous rétrécissez le réseau</p>
+
+
+    </section>
+
+    <section>
+        <p>n'importe quell point du réseau peut émettre et/ou receptionner des données/paquets</p>
+        <br>
+        <p class="fragment" data-fragment-index="1">
+            Sur le réseau vous etes identifié à l'aide d'une adresse IP attribuée par l'IANA (comme un numéro de téléphone)
+        </p>
+        <br>
+        <p class="fragment" data-fragment-index="2">
+            Mais contrairement au réseau téléphonique, Internet est basé sur la "commutation de paquets" (IP)<br>
+
+            la poste par exemple : si on peut ecrire que 10 caracteres sur une "lettre (numérotée)" il faut plusieurs "lettres" plsieurs paquets
+            Le Bureau de poste est un "routeur". Il y a des LAN (département géographique par exemple) et des WAN (monde entier, enfin là ou y'a la poste!)<br>
+
+            Premier paquet : "lo and behold" synonyme de "Surprise!"
+
+            ************** VIDEO RAPIDE SUR PAQUETS IP .... *************
+
+        </p>
+    </section>
+
+    <section>
+
+        Pour s'interesser plus particulièrement au web : DNS, HTTP
+
     </section>
 
 </section>
