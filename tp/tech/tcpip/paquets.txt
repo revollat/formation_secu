@@ -1,0 +1,3 @@
+Utiliser wireshark dans Kali.
+Ouvrir capture tp/tech/tcpip/http_perdu_com.pcapng
+parler de la requete DNS

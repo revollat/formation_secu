@@ -1,0 +1,10 @@
+http://example.com&gibberish=1234@167772161/
+==> 10.0.0.1
+
+http://example.com\@coredump.cx/
+==> vers example.com dans la plupart des navigateurs car "\" sera interpreté comme un délimiteur de chemin
+(sauf dans firefox qui interprète "example.com\" comme valeur valie pour le login et dirige donc vers coredump.cx)
+
+encodage des caractère spéciaux :
+http://%65%78%61%6d%70%6c%65%2e%63%6f%6d/
+=> example.com

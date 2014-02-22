@@ -45,14 +45,52 @@
     </section>
 
     <section>
-        le but du cours n'est pas d'amasser des connaissances, mais d'avoir une vue d'ensemble des notions de sécurité informatique appliqué aux applications web.
-        Bien sur nous allons détailler certains point. Quelque'un vous interessreons d'autres moins. L'obectif est de vous guider vers les bonnes pratiques lorsque vous aurez à faire des choix :
+
+        Une bonne raison d'avior choisi cette option : http://www.gouvernement.fr/premier-ministre/cybersecurite-le-premier-ministre-annonce-ses-priorites
+
+        le but du cours est d'avoir une vue d'ensemble des notions de sécurité informatique appliqué aux applications web.
+        L'obectif est de vous guider vers les bonnes pratiques lorsque vous aurez à faire des choix :
         - En tant que développeur
         - Admin réseau/ systeme
 
-        http://www.evolutionoftheweb.com/
-        http://www.tiki-toki.com/timeline/entry/37263/Politics-and-the-Internet
-        http://www.internetsociety.org/internet/what-internet/history-internet
+        la sécurité semble un notion intutive mais est très difficile à définir. <br/>
+        Les tentatives de "formalisation" de la notion de sécurité ne sont pas très utiles pour créer de vrais aplications :<br/>
+
+        Une tentative de formalisation (1960) : A system is secure if and only if it starts in a secure state and cannot
+        enter an insecure state.
+
+        <ul>
+            <li>Il n'est quasi plus possible d'enumérer/distinguer les etats sécurisé et insécurisé d'une application a cause de la complexité de l'ordinateur</li>
+            <li>Une assertion comme "Je ne veux pas que les autres lisent mes mails" ne se formalise pas comme par magie en des contraintes sur le logiciel</li>
+            <li>Très difficile d'analyser le comportement du logiciel de façon exhaustive (à cause du "problème de l'arret" par exemple)</li>
+        </ul>
+
+        Il faut donc une approche basée sur la gestion du risque (Risk managment). Pensez aux fonctionnement des assurances.
+
+        Des nomenclatures comme le "Common Weakness Enumeration" (CWE) permette aux gens de parler des memes vulnérabilités et de se comprendre.
+        Le catalogue CWE actuel est un arbre (avec des catégories et des sous catégories) qui contient environ 500 éléments (qui sont des feuilles ou des nœuds de l'arbre). On y trouve des types de faiblesses tels que : "buffer overflow", "format strings", "contrôle insuffisant des données", "fuite d'information", etc.
+        http://cwe.mitre.org/
+
+
+        Le Common Vulnerabilities and Exposures (CVE) quand à lui tente de répértorier les failles présente dans les logiciels.
+        Les identifiants CVE sont des références de la forme CVE-AAAA-NNNN (AAAA est l'année de publication et NNNN un numéro incrémenté).
+
+        De nombreux systèmes de séécurité IDS/IPS, Scanner, ... utilisent cette nomenclature.
+
+        Une approche pratique de la sécurité :
+        <ul>
+            <li>Apprendre des erreurs des autres (ou de ces propres erreurs)</li>
+            <li>Créer ses outils pour détécter et corriger les problèmes</li>
+            <li>S'attendre au pire (loi de Murphy)</li>
+        </ul>
+
+        Les sources de pb :
+        <ul>
+            <li>Les navigateurs, format des document, protocoles de communications : on évolué des façon chaotique se qui pose des pb.</li>
+            <li>L'utilisateur lambda sans connaissance : Ne peux pas causer beaucoup de dégat en utilisant un traitement de texte par exemple, il en va autrement pour l'utilisation d'une application</li>
+            <li>Dans le monde du web pas de séparation claire entre Programme et Données tout est "poreux" qui accru le risue de sécurité</li>
+            <li>Il n'y a pas de consensus général de la part des editeur logiciels sur la sécurité</li>
+        </ul>
 
     </section>
 
@@ -68,7 +106,7 @@
     </section>
 
     <section>
-        <h2>19 ème sciècle</h2>
+        <h2>19 ème siècle</h2>
         <p class="fragment" data-fragment-index="1">Ada Lovelace publie les premiers algorithmes pour la machine analytique de Charles Babbage (cf. http://fr.wikipedia.org/wiki/Charles_Babbage#La_machine_analytique)</p>
     </section>
 
@@ -112,9 +150,10 @@
     <section>
         <h2>Années 90</h2>
         <p class="fragment" data-fragment-index="1">1993 : Le navigateur Mosaic devient populaire pour le WWW (qui représente 1% du traffic internet à l'époque)</p>
-        <p class="fragment" data-fragment-index="2">le e-commerce se développe et le SPAM avec (origine du mot)</p>
-        <p class="fragment" data-fragment-index="3">1998 : Google ouvre son premier bureau en californie</p>
-        <p class="fragment" data-fragment-index="4">1999 : Napster</p>
+        <p class="fragment" data-fragment-index="3">le e-commerce se développe et le SPAM avec (origine du mot)</p>
+        <p class="fragment" data-fragment-index="4">Fin 90 : "Guerre des navigteurs" (Netscape vs. Microsoft IE</p>
+        <p class="fragment" data-fragment-index="5">1998 : Google ouvre son premier bureau en californie</p>
+        <p class="fragment" data-fragment-index="6">1999 : Napster</p>
         <p class="fragment roll-in" data-fragment-index="5">Naissance de l' "industrie de la sécurité informatique"</p>
         <p class="fragment roll-in" data-fragment-index="6">Premiers DDoS, premiers BotNet</p>
     </section>
@@ -122,8 +161,37 @@
     <section>
         <h2>Années 2000</h2>
         <p class="fragment" data-fragment-index="1">2001 : création de wikipedia</p>
-        <p class="fragment roll-in" data-fragment-index="2">Le Piratage devient une "industrie" : Adware, spyware, spam, phishing ...</p>
-        <p class="fragment roll-in" data-fragment-index="3">Naissance des zero day attacks, rootkits, rogue antispyware, clickjacking, ...</p>
+        <p class="fragment" data-fragment-index="2">XMLHttpRequest : Permettra l'apparition du "Web 2.0"</p>
+        <p class="fragment" data-fragment-index="3">2004 : Firefox</p>
+        <p class="fragment roll-in" data-fragment-index="4">Le Piratage devient une "industrie" : Adware, spyware, spam, phishing ...</p>
+        <p class="fragment roll-in" data-fragment-index="5">Naissance des zero day attacks, rootkits, rogue antispyware, clickjacking, ...</p>
+    </section>
+
+    <section>
+        Hall of fame HACKERS :
+
+        Top black hat hackers:
+        Robert Tappan Morris - creator of the Morris Worm in 1988, which was considered the first computer warm on the Internet
+        Kevin Mitnik (aka condor) - commited arious computer and communications-related crimes. He was caught in 1995 with the help of security expert Tsutomu Shimomura
+        Jonatan James (aka c0mrade) - committed a series of intrusions into various systems, he installed a backdoor into a Defense Threat Reduction Agency server, that enabled him to view sensitive emails and capture employee usernames and passwords. He also cracked into NASA computers and stole software worth $1.7 million
+        Adrian Lamo - broke into several high-profile computer networks, like The New York Times, Yahoo!, and Microsoft
+        Michael Calce (aka MafiaBoy) - launched a series of highly publicized denial-of-service attacks gainst large commercial websites including Yahoo!, Fifa.com, Amazon.com, Dell and CNN
+        Kevin Poulsen - took over of all of the telephone lines for Los Angeles guaranteeing that he would be the 102nd caller and win the prize of Porsche
+
+        Top white hat hackers:
+        Tsutomu Shimomura - he assisted FBI with tracking down the Kevin Mitnik
+        Steve Wozniak - inventor and computer programmer. He co-founded Apple Computer (now Apple Inc.). He also founded Wheels of Zeus (WOZ) to create wireless GPS technology.
+        Richard Matthew Stallman - is a software freedom activist and computer programmer. Best known for launching the GNU Project and founding the Free Software Foundation a
+        Linus Torvalds - he is a software engineer, who was the principal force behind the development of the Linux kernel, later on he became the chief architect of the Linux kernel.
+        Tim Berners Lee (aka TimBL) - best known as the inventor of the World Wide Web, creator of the system that we are using to navigate the Internet in order to find files, folders, and websites.
+        Julian Assange - he is known as the editor-in-chief and founder of WikiLeaks, which publishes secret information.
+
+    </section>
+
+    <section>
+        http://www.evolutionoftheweb.com/
+        http://www.tiki-toki.com/timeline/entry/37263/Politics-and-the-Internet
+        http://www.internetsociety.org/internet/what-internet/history-internet
     </section>
 
 </section>
@@ -173,15 +241,81 @@
 
             Premier paquet : "lo and behold" synonyme de "Surprise!"
 
-            ************** VIDEO RAPIDE SUR PAQUETS IP .... *************
+            TCP (Transmission Control Protocol) et IP (Internet Protocol), qui ont été les premiers à être définis. Le document de référence est RFC 1122.
+            Le réseau Arpanet adopte le 1er janvier 1983 la suite de protocoles TCP/IP qui sera la base d'Internet.
+
+            document de référence
+
+            TCP/IP:
+            http://upload.wikimedia.org/wikipedia/commons/7/7e/Comparaison_des_mod%C3%A8les_OSI_et_TCP_IP.png
+
+            http://www.wtcs.org/snmp4tpc/images/IP-Header.jpg
+
+            TP : tech/tcpip/paquets.txt
 
         </p>
     </section>
 
+
+</section>
+
+<section>
+
     <section>
+        <h1>Anatomie du web</h1>
+    </section>
 
-        Pour s'interesser plus particulièrement au web : DNS, HTTP
+    <section>
+        <h2>Tout commence par une URL</h2>
+    </section>
 
+    <section>
+        URL : Uniform Resource Locator. Identifiant vers une ressource.
+        <img src="images/format_url.png" alt=""/>
+
+        <ul>
+            <li>1 - Scheme: le protocole utilisé (http, https, ftp, data:, javascript:)</li>
+            <li>2 - Séparateur d'URL hierarchique. Il y a des cas ou il n'est pas présent :
+                <ul>
+                    <li>mailto:user@example.com?subject=Hello+world</li>
+                    <li>http://fr.wikipedia.org/wiki/Data_URI_scheme</li>
+                    <li>javascript:alert(2+2)</li>
+                </ul>
+            </li>
+            <li>3 - Authentification</li>
+            <li>4 - Adresse IPv4, IPv6, nom DNS, ...</li>
+            <li>5 - Port TCP</li>
+            <li>6 - Chemin hierarchique</li>
+            <li>7 - Query string (utile coté serveur)</li>
+            <li>8 - Fragment (Utile coté client)</li>
+        </ul>
+
+        tp: anatomie/url/exemple.txt
+
+    </section>
+
+    <section>
+        <h2>HTTP</h2>
+    </section>
+
+    <section>
+        <h2>HTML</h2>
+    </section>
+
+    <section>
+        <h2>CSS</h2>
+    </section>
+
+    <section>
+        <h2>Javascript</h2>
+    </section>
+
+    <section>
+        <h2>Documents non HTML</h2>
+    </section>
+
+    <section>
+        <h2>Contenu rendu avec plugins</h2>
     </section>
 
 </section>
