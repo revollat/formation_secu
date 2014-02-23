@@ -300,6 +300,75 @@
     </section>
 
     <section>
+        HTTP : HyperText Transfert Protocol, est le protocole de comunication au coeur du WWW.
+        Conçus à la base pour récupérer du contenu staique il a évolué pour supporter des applications distribuées complexes.
+
+        HTTP/1.0 standard (RFC 1945)
+        HTTP/1.1 (RFC 2616)
+        a venir : http://en.wikipedia.org/wiki/HTTP_2.0
+
+        protocole texte qui repose sur TCP/IP
+
+        la première version (HTTP/0.9) ne permet pas d'ajout de meta-data :
+        une seul ligne texte pour interroger le serveur web :
+
+        Exemple :
+
+        GET /index.html
+
+        pas de possibilité pour le client de donner une préférence de langue, ou les format de documents acceptés.
+        Pour le serveur, pas de possibilité de de dire au client que le document n'existe plus ou que c'est un autre format que du HTML par exemple
+
+        pas de possibilité d'avoir plusieurs hostname sur une meme IP
+
+        En HTTP/1.0 puis 1.1, possibilité d'ajouter des entetes (HEADERS)
+        Ex : User-Agent (Info navigateur), Host (hostname), Accept (MIME document types), Accept-Language, and Referer
+        suivi d'une ligne vide et eventuellement un payload
+
+        Voir exemple avec firebug
+
+        Pb sécu des format de transmission des entetes (cf. page 67 de tangled web)
+        page 69 pour pb d'entes dupliquées.
+
+        parler des proxy HTTP
+
+        type de requetes HTTP: (cf. http://julien-pauli.developpez.com/tutoriels/web/http/?page=page_3)
+        GET : récupération de documents
+        HEAD: pareil à GET mais renvoi seulement les entetes HTTP (pour vérifier i le doc à changé par exemple)
+        POST: envoi payload sur le serveur (modification)
+        PUT: Creations
+        complements sur POST vs. PUT : http://stackoverflow.com/questions/630453/put-vs-post-in-rest)
+        DELETE:
+        TRACE:
+        CONNECT:
+
+        Code réponse du serveur : cf. http://julien-pauli.developpez.com/tutoriels/web/http/?page=page_4#LIV-B
+        Quand il y a une erreur dans une appli web il FAUT renvoyer le code retour correspondant (au lieu de renvoyer 200 OK avec le message d'erreur dans le corp du document, ça facilite les tests notemment)
+
+
+        cookies :
+        premet au serveur de stocker des pairs clef/valeur coté client (entete Set-Cookie dans la réponse HTTP)
+        Façon courante de maintenir des sessions et authentifier les requetes utilisateur
+        Attributs des cookies:
+        Expires:
+        DOmain: resstreindre à un domaine et pas au hostname
+        Secure attribute :  Prevents the resulting cookie from being sent over
+        nonencrypted connections.
+        HttpOnly attribute Removes the ability to read the cookie through the
+        document.cookie API in JavaScript. This is a Microsoft extension, although
+        it is now supported by all mainstream browsers.
+
+        HTTPS et certificats:
+        HTTP = echanges en texte clair
+        solution : encapsuler HTTP dans une couche de transport chiffrée : Transport Layer Security (a.k.a SSL)
+        Cryptographie à clef publique (expliquer le concept, vidéo reférence, ...)
+        Des lef publiques d'autorité de certification sont à l'interieur de vos navigateurs (aller les voir dans la conf)
+
+
+
+    </section>
+
+    <section>
         <h2>HTML</h2>
     </section>
 
