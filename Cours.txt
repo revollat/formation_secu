@@ -1,0 +1,18 @@
+Intro
+
+Pour chaque concepts:
+
+- Intro / historique / annecdotes
+- explication approndie
+- exemples théorique (genre avec multilide) (test avec différents outils si possible : du plus dépouillé au plus complet genre (tcpdum / wireshark)
+- exemple pratiques (genre avec webgoat)
+- (si on parle de failles de sécurité) voir des exemples de failles véritables sur applications existante : chercher dans les BDD de vulnérabilités et Comment prévenir la faille ?
+- Point de vu developpeur, admin, systeme, utilisateur.
+- quizz / vidéos en ligne / jeux / bout de code à ecrire / question ouverte (exemepl : ecrire un filtre wireshark pour par exmeple filtrer le protocole http si l'ip source = ...)
+- liens vers illustrations, doc, ...
+-----
+
+Une partie aussi sur la cryptographie.(utilisation de Sodium - https://github.com/alethia7/php-sodium)
+
+contribuer à un guide sur la sécurité / article wikipedia
+

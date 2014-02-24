@@ -1,0 +1,9 @@
+
+Faire test avec
+
+nc example.org 80
+
+referrer spoofing (exemple de falsification d'entete), exemple du "Referer" :
+http://www.whatismyreferer.com/
+
+ecrire un script PHP (dans owaspbwa) qui affiche les entetes HTTP envoyés par la requete et la réponse. et faire des tests avec nc

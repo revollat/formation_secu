@@ -1,3 +1,17 @@
 Utiliser wireshark dans Kali.
 Ouvrir capture tp/tech/tcpip/http_perdu_com.pcapng
+
+Capture samples là : http://wiki.wireshark.org/SampleCaptures#HyperText_Transport_Protocol_.28HTTP.29
+
 parler de la requete DNS
+
+utilisation de netcat
+
+http://www.plixer.com/blog/scrutinizer/free-wireshark-training-packet-capture-101/
+
+Filtre de capture et d'affichage :
+http://openmaniak.com/fr/wireshark_filters.php
+http://wiki.wireshark.org/CaptureFilters ET http://wiki.wireshark.org/DisplayFilters
+
+Challenges honeynet (forensic - analyse de paquets) : http://www.honeynet.org/challenges
+

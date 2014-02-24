@@ -49,9 +49,10 @@
         Une bonne raison d'avior choisi cette option : http://www.gouvernement.fr/premier-ministre/cybersecurite-le-premier-ministre-annonce-ses-priorites
 
         le but du cours est d'avoir une vue d'ensemble des notions de sécurité informatique appliqué aux applications web.
-        L'obectif est de vous guider vers les bonnes pratiques lorsque vous aurez à faire des choix :
-        - En tant que développeur
-        - Admin réseau/ systeme
+
+        Demande des compétences dans de nombreux domaines : admin sys / admin réseau / développement /  ...
+
+        evolue très vite.
 
         la sécurité semble un notion intutive mais est très difficile à définir. <br/>
         Les tentatives de "formalisation" de la notion de sécurité ne sont pas très utiles pour créer de vrais aplications :<br/>
@@ -60,7 +61,7 @@
         enter an insecure state.
 
         <ul>
-            <li>Il n'est quasi plus possible d'enumérer/distinguer les etats sécurisé et insécurisé d'une application a cause de la complexité de l'ordinateur</li>
+            <li>Il n'est quasi plus possible d'enumérer/distinguer les etats sécurisé et insécurisé d'une application a cause de la complexité des ordinateurs</li>
             <li>Une assertion comme "Je ne veux pas que les autres lisent mes mails" ne se formalise pas comme par magie en des contraintes sur le logiciel</li>
             <li>Très difficile d'analyser le comportement du logiciel de façon exhaustive (à cause du "problème de l'arret" par exemple)</li>
         </ul>
@@ -84,7 +85,7 @@
             <li>S'attendre au pire (loi de Murphy)</li>
         </ul>
 
-        Les sources de pb :
+        (quelques) Sources de pb :
         <ul>
             <li>Les navigateurs, format des document, protocoles de communications : on évolué des façon chaotique se qui pose des pb.</li>
             <li>L'utilisateur lambda sans connaissance : Ne peux pas causer beaucoup de dégat en utilisant un traitement de texte par exemple, il en va autrement pour l'utilisation d'une application</li>
@@ -201,7 +202,7 @@
 
     <section data-background="https://v4s.yimg.com/so/7274/7573243044_e8a04695cb_c.jpg">
         <aside class="notes">
-            Rapide tour des techno qui font fonctionner le réseau.
+            Rapide tour des techno qui font fonctionner le réseau Internet.
         </aside>
         <h1 style="color: white;">Techno Internet</h1>
     </section>
@@ -211,7 +212,7 @@
         <p>Inter-Net : Réseaux interconnectés, 40.000 opérateurs AS (Autonomous System)</p>
         <br>
         <p class="fragment" data-fragment-index="1">
-            Qui maitre / controle Internet ?<br>
+            Qui controle Internet ?<br>
             => Personne car (Controle <==> Pouvoir de détruire) et personne ne peut "détuire" internet (Mythe du "switch internet")
         </p>
         <br>
@@ -246,12 +247,16 @@
 
             document de référence
 
+            http://www.commentcamarche.net/contents/internet-2096316497
+
             TCP/IP:
             http://upload.wikimedia.org/wikipedia/commons/7/7e/Comparaison_des_mod%C3%A8les_OSI_et_TCP_IP.png
 
             http://www.wtcs.org/snmp4tpc/images/IP-Header.jpg
 
-            TP : tech/tcpip/paquets.txt
+            Parler routeur.
+
+            Parler DNS : http://www.commentcamarche.net/contents/518-dns-systeme-de-noms-de-domaine
 
         </p>
     </section>
@@ -296,7 +301,11 @@
 
     <section>
         <h2>HTTP</h2>
+
         http://quiz.thefullwiki.org/Hypertext_Transfer_Protocol
+
+        http://www.commentcamarche.net/contents/520-le-protocole-http
+
     </section>
 
     <section>
@@ -304,10 +313,9 @@
         Conçus à la base pour récupérer du contenu staique il a évolué pour supporter des applications distribuées complexes.
 
         HTTP/1.0 standard (RFC 1945)
-        HTTP/1.1 (RFC 2616)
-        a venir : http://en.wikipedia.org/wiki/HTTP_2.0
+        HTTP/1.1 (RFC 2616) version actuelle (a venir : http://en.wikipedia.org/wiki/HTTP_2.0)
 
-        protocole texte qui repose sur TCP/IP
+        Protocole texte qui repose sur TCP/IP
 
         la première version (HTTP/0.9) ne permet pas d'ajout de meta-data :
         une seul ligne texte pour interroger le serveur web :
@@ -324,27 +332,37 @@
         En HTTP/1.0 puis 1.1, possibilité d'ajouter des entetes (HEADERS)
         Ex : User-Agent (Info navigateur), Host (hostname), Accept (MIME document types), Accept-Language, and Referer
         suivi d'une ligne vide et eventuellement un payload
-
-        Voir exemple avec firebug
+        http://en.wikipedia.org/wiki/List_of_HTTP_header_fields
 
         Pb sécu des format de transmission des entetes (cf. page 67 de tangled web)
         page 69 pour pb d'entes dupliquées.
 
-        parler des proxy HTTP
-
         type de requetes HTTP: (cf. http://julien-pauli.developpez.com/tutoriels/web/http/?page=page_3)
         GET : récupération de documents
-        HEAD: pareil à GET mais renvoi seulement les entetes HTTP (pour vérifier i le doc à changé par exemple)
-        POST: envoi payload sur le serveur (modification)
-        PUT: Creations
-        complements sur POST vs. PUT : http://stackoverflow.com/questions/630453/put-vs-post-in-rest)
-        DELETE:
-        TRACE:
-        CONNECT:
+        HEAD: pareil à GET mais renvoi seulement les entetes HTTP (pour vérifier si le doc à changé par exemple)
+        POST: envoi payload sur le serveur (mis à jour de ressources)
+        PUT: Creations ressources
+        DELETE: Suppression ressources
+        TRACE: Sorte de "ping" (le serveur doit retourner dans le corps de la réponse le contenu de la requete reçus (pour vérifier qu'il n'y a pas de proxy entre client et serveur)
+        CONNECT: Tunneling avec un proxy HTTP
+
+        parler des proxy HTTP:
+        Intermédiaire entre le client et le wite internet destination
+        Le proxy peut aussi faire du caching, authentification, access control
+        lorsque HTTPS est utilisé, le navigateur utilise le proxy comme un relai TCP (methode CONNECT)
+        On utilisera des proxy un peu modifier pour tester la sécurité des sites. Modifier la requete et la réponse
+
+        Parler API RESTful et exemple là :http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
+        Ex :
+        http://wahh-app.com/search?make=ford&model=pinto
+        en Rest deviendrai :
+        http://wahh-app.com/search/ford/pinto
+
+
+        Vir exemple avec console chrome (ou firebug) : cf. images/console_http.jpg
 
         Code réponse du serveur : cf. http://julien-pauli.developpez.com/tutoriels/web/http/?page=page_4#LIV-B
         Quand il y a une erreur dans une appli web il FAUT renvoyer le code retour correspondant (au lieu de renvoyer 200 OK avec le message d'erreur dans le corp du document, ça facilite les tests notemment)
-
 
         cookies :
         premet au serveur de stocker des pairs clef/valeur coté client (entete Set-Cookie dans la réponse HTTP)
@@ -357,6 +375,7 @@
         HttpOnly attribute Removes the ability to read the cookie through the
         document.cookie API in JavaScript. This is a Microsoft extension, although
         it is now supported by all mainstream browsers.
+        --> exercies avec cookies en PHP
 
         HTTPS et certificats:
         HTTP = echanges en texte clair
@@ -364,30 +383,201 @@
         Cryptographie à clef publique (expliquer le concept, vidéo reférence, ...)
         Des lef publiques d'autorité de certification sont à l'interieur de vos navigateurs (aller les voir dans la conf)
 
+        https://www.owasp.org/index.php/Category:OWASP_CAL9000_Project (http://sec101.sourceforge.net/CAL9000/)
+
+        tp/anatomie/http/netcat.txt
+
+        tp/tech/tcpip/paquets.txt
 
 
+    </section>
+
+
+    <section>
+        <h2>Coté serveur</h2>
     </section>
 
     <section>
-        <h2>HTML</h2>
+        Avant web entièrement statique. Maintenant beaucoup de contenu généré dynamiquement
+
+        paramètres qui permet au serveur de générer contenu pour un individu en particulier:
+        n In the URL query string
+        n In the fi le path of REST-style URLs
+        n In HTTP cookies
+        n In the body of requests using the POST method
+
+        En plus de ça le serveur peut utiliser les entetes HTTP (par exemple User-Agent pour otpimiser la réponse pour un device en particulier)
+
+        Technologies coté serveur:
+        n Scripting languages such as PHP, VBScript, and Perl
+        n Web application platforms such as ASP.NET and Java
+        n Web servers such as Apache, IIS, and Netscape Enterprise
+        n Databases such as MS-SQL, Oracle, and MySQL
+        n Other back-end components such as fi lesystems, SOAP-based web services,
+        and directory services
+
+
+    </section>
+
+
+    <section>
+        <h2>Coté client</h2>
     </section>
 
     <section>
-        <h2>CSS</h2>
+
+        HTML :
+        parseur HTML (page 95 de tangled web)
+        trouver des exemples à tester avec différents navigateurs
+
+        Hyperlien:
+
+        <a href=”?redir=/updates/update29.html”>What’s happening?</a>
+
+        Le navigateur fait la requete HTTP :
+
+        GET /news/8/?redir=/updates/update29.html HTTP/1.1
+        Host: mdsec.net
+
+        FORMS:
+
+        <form action=”/secure/login.php?app=quotations” method=”post”>
+            username: <input type=”text” name=”username”><br>
+            password: <input type=”password” name=”password”>
+            <input type=”hidden” name=”redir” value=”/secure/home.php”>
+            <input type=”submit” name=”submit” value=”log in”>
+        </form>
+
+        -->
+
+        POST /secure/login.php?app=quotations HTTP/1.1
+        Host: wahh-app.com
+        Content-Type: application/x-www-form-urlencoded
+        Content-Length: 39
+        Cookie: SESS=GTnrpx2ss2tSWSnhXJGyG0LJ47MXRsjcFM6Bd
+
+        username=daf&password=foo&redir=/secure/home.php&submit=log+in
+
+
+        JAVASCRIPT:
+        tache courantes:
+        n Validating user-entered data before it is submitted to the server to avoid
+        unnecessary requests if the data contains errors
+        n Dynamically modifying the user interface in response to user actions — for
+        example, to implement drop-down menus and other controls familiar
+        from non-web interfaces
+        n Querying and updating the document object model (DOM) within the
+        browser to control the browser’s behavior (the browser DOM is described
+        in a moment)
+
+        DOM : Représentation abstraite du document HTML qui peut etre manipulée à partir de l'API (examples et exercice avec la console javascript)
+
+        Ajax (Asynchronous JavaScript and XML) : ensemble de technique de programmation permettant à une application web d'avoir le look'n'feel d'un logiciel classique.
+
+        Same origin policy : implémenté dans les navigateurs et prévoi d'empecher l'interaction entre contenus d'origine différents.
+        Basically, content received from one website is allowed to read
+        and modify other content received from the same site but is not allowed to
+        access content received from other sites.
+        En pratique, faire attention à quelques points:
+        A page residing on one domain can cause an arbitrary request to be made
+        to another domain (for example, by submitting a form or loading an
+        image). But it cannot itself process the data returned from that request.
+        n A page residing on one domain can load a script from another domain and
+        execute this within its own context. This is because scripts are assumed
+        to contain code, rather than data, so cross-domain access should not lead
+        to disclosure of any sensitive information.
+        n A page residing on one domain cannot read or modify the cookies or
+        other DOM data belonging to another domain.
+
+        These features can lead to various cross-domain attacks, such as inducing
+        user actions and capturing data. Further complications arise with browser
+        extension technologies, which implement same-origin restrictions in different
+        ways.
+
+        HTML5:
+        It introduces various new tags, attributes, and APIs that can be leveraged
+        to deliver cross-site scripting and other attacks
+
+        It modifi es the core Ajax technology, XMLHttpRequest, to enable two-way
+        cross-domain interaction in certain situations. This can lead to new crossdomain
+        attacks,
+
+        It introduces new mechanisms for client-side data storage, which can lead
+        to user privacy issues, and new categories of attack such as client-side SQL
+        injection,
+
+        Le "Web 2.0" : couverture d'attaque plus grande:
+
+        Heavy use of Ajax for performing asynchronous, behind-the-scenes requests
+        n Increased cross-domain integration using various techniques
+        n Use of new technologies on the client side, including XML, JSON, and Flex
+        n More prominent functionality supporting user-generated content, information
+        sharing, and interaction
+
+        Les plugins du navigateur :
+        n Java applets
+        n ActiveX controls
+        n Flash objects
+        n Silverlight objects
+
+
+
     </section>
 
+
+</section>
+
+<section>
     <section>
-        <h2>Javascript</h2>
-    </section>
 
-    <section>
-        <h2>Documents non HTML</h2>
-    </section>
+        http://sectools.org/
 
-    <section>
-        <h2>Contenu rendu avec plugins</h2>
-    </section>
+        Les outils de Kali :
+        https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project
+        http://code.google.com/p/zaproxy/
+        Tutu vidéo ZAP : https://code.google.com/p/zaproxy/wiki/Videos
 
+        AIDE : https://code.google.com/p/zaproxy/wiki/Introduction
+
+        ZAP’S FEATURES
+        Open source
+        Cross platform
+        Easy to install
+        Completely free
+        Ease of use a priority
+        Comprehensive help pages
+        Fully internationalized
+        Translated into a dozen languages
+        Community based, with involvement
+        actively encouraged
+        Under active development by an
+        international team of volunteers
+
+        ZAP’S FUNCTIONALITY
+        Intercepting proxy
+        Traditional and AJAX spiders
+        Active scanner
+        Passive scanner
+        Forced Browsing
+        Fuzzer
+        Dynamic SSL certificates
+        Smart card support
+        Web sockets support
+        Authentication and session support
+        Powerful REST based API
+        Support for a wide range
+        of scripting languages
+        Automatic updating option
+        Integrated and growing
+        marketplace of add-ons
+
+        Vulnérabilités dans OWASPBWA : http://sourceforge.net/apps/trac/owaspbwa/report/1
+
+
+        tester les scanner : http://code.google.com/p/wavsep/
+
+
+    </section>
 </section>
 
 <section>
