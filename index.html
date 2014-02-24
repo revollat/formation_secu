@@ -204,7 +204,7 @@
         <aside class="notes">
             Rapide tour des techno qui font fonctionner le réseau Internet.
         </aside>
-        <h1 style="color: white;">Techno Internet</h1>
+        <h1 style="color: white;">De quoi "Internet" est-il le nom ?</h1>
     </section>
 
     <section>
@@ -260,6 +260,45 @@
 
         </p>
     </section>
+
+
+</section>
+
+<section>
+    Mechanisme de défense générique pour les applications WEB :
+
+    Handling user access to the application’s data and functionality to prevent
+    users from gaining unauthorized access
+    n Handling user input to the application’s functions to prevent malformed
+    input from causing undesirable behavior
+    n Handling attackers to ensure that the application behaves appropriately
+    when being directly targeted, taking suitable defensive and offensive
+    measures to frustrate the attacker
+    n Managing the application itself by enabling administrators to monitor its
+    activities and confi gure its functionality
+
+    Ces mecanisme de défense peuvent avoir des points faibles et sont par conséquent attaqués.
+
+    1 - mecaniqmes pour gérer l'accès utilisateur
+
+    * Authentification :
+    pour avoir un utilisateur autre que "anonyme", typiquement un formulaire login/pass est POSTé. pour des appli web sensibles on peut imaginer des methode plus sophistiqués :
+    certificats client, smartcard, challenge-response token.
+    En plus du processus de login, la couche authentification propose souvent de créer son compte, retrouver un mot de passe perdu ou changer de mot de passe ...
+    Les pb typiques du composant d'authentification : un attaquant peuc devnier les username (schéma de création des username prédictible par exemple), outrepasser la fonction de login en exploitant un défaut de conception/programmation
+
+    * session:
+    après avoir été authentifié, il daoit etres identifié pour les requetes suivante (le différencier des autres requetes des autres user)
+    Typiquement un token est attribué au user qui le renvoi dans chaque requetes (en général on utilise des cookies pour ça, mais on peut aussi le faire par champs formulaire caché ou par la query string (attention si on envoi par mail un lien contenant un identifiant de session)
+    Attaques : génération prédictible des tokens
+
+    * ACL :
+    qui à acces à quoi (ROLES: anonyme, user, editor, admin, ...)
+    les développeurs font souvent des (mauvaises) "suppositions" sur l'interaction des utilisateurs avec leur application web, et quelquefois omettent des controle d'accès sur certaines fonctions de l'applications
+
+    2- Générer les données entré par le user
+
+
 
 
 </section>
