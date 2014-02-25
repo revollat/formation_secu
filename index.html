@@ -296,8 +296,53 @@
     qui à acces à quoi (ROLES: anonyme, user, editor, admin, ...)
     les développeurs font souvent des (mauvaises) "suppositions" sur l'interaction des utilisateurs avec leur application web, et quelquefois omettent des controle d'accès sur certaines fonctions de l'applications
 
-    2- Générer les données entré par le user
+    2- Gérér les données entrées par le user :
+    Les entrées utilisateur ne sont A PRIORI pas sûres.
 
+    * Divertisté des entrées : quelques fois les app peuvent imposer une validation stricte (ex. username < 8 car. alphanumériques pour un form de login),
+    dans d'autres cas l'application doit tolérer une large plage d'entrée possible
+    (ex. un champ adresse qui contient lettre, chiffre, espace, quote, guillements, ...) mais la vlidation est toujours possible( pas de balise HTML, ...)
+    Parfois on ne peut pas imposer une validation aussi stricte.
+
+    Il y a aussi des champs caché des formulaires ou des cookies qui peuvent etre modifié par un ataquant.
+
+    * Approches pour gérer les entrées utilisateur
+    En fonction du besoin, une approche différente sera utilisée pour le filtrage des donées entrée par l'utilisateur.
+    Une BLACKLIST : Le mecaniqme de validation bloque les pattern connus pour etre des attaques.
+    Ce n'est pas une très bonne approche car une meme attaque peut etre "encodée" et représenté de de différentes façons, et puis il faut ajouter constemment les nouvelles attaques à la blacklist.
+    Quelques fois c'est filtre sont très facile à duper:
+
+    If SELECT is blocked, try SeLeCt
+    n If or 1=1-- is blocked, try or 2=2--
+    n If alert(‘xss’) is blocked, try prompt(‘xss’)
+
+    ou encore utiliser des caractères non standars pour duper l'expression du filtre :
+
+    SELECT/*foo*/username,password/*foo*/FROM/*foo*/users
+    <!--<img%09onerror=alert(1) src=a>-->
+
+    Beaucoup de filtrer basé sur blacklist sont vulnérable à l'attauqe "NULL byte" (%00, représente fin de chaine en C et donc PHP basé sur C est vulnérable)
+    Ajouté avant une expression bloquée, le filtre s'arrete tout simplement et la chaine malicieuse n'est pas identifiée.
+
+    ex : <!-- %00<script>alert(1)</script> -->
+
+    WHITELIST : Plus efficace en terme de protection qu'une blacklist mais ce n'est pas toujours possible à mettre en place (filtrage trop strict)
+
+    SANITIZATION : on tente d'"assainir" les entrées pour éliminer les caractères malicieux qui pourrait poser pb.
+    c'est la solution la plus souple.
+
+    Pb avec les filtre à plusieurs passes :
+    si ce n'est pas fait correctemnt; on peut avoir des problèmes:
+    - si on enlève les l'expression <!-- <script> --> sans le faire recursivement alors <!-- <scr<script>ipt> va devenir <script>-->
+    - ordre de filtrage : si on enlève d'abord "../" puis "..\" alors "...\/" devient "../"
+    Pb avec les canonicalization (normalisation encodage des données):
+    Ex. double URL encoding : %2527 -> (URL decode) -> %27 -> (autorisé par le filtre car pas d'apostrophe) -> (application fait un URLdecode) -> ' (pwned)
+
+    3- Gérer les attaques
+
+    GERER ERREURS
+
+    4- Gérer l'application
 
 
 
@@ -572,45 +617,8 @@
         http://sectools.org/
 
         Les outils de Kali :
-        https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project
-        http://code.google.com/p/zaproxy/
-        Tutu vidéo ZAP : https://code.google.com/p/zaproxy/wiki/Videos
 
-        AIDE : https://code.google.com/p/zaproxy/wiki/Introduction
-
-        ZAP’S FEATURES
-        Open source
-        Cross platform
-        Easy to install
-        Completely free
-        Ease of use a priority
-        Comprehensive help pages
-        Fully internationalized
-        Translated into a dozen languages
-        Community based, with involvement
-        actively encouraged
-        Under active development by an
-        international team of volunteers
-
-        ZAP’S FUNCTIONALITY
-        Intercepting proxy
-        Traditional and AJAX spiders
-        Active scanner
-        Passive scanner
-        Forced Browsing
-        Fuzzer
-        Dynamic SSL certificates
-        Smart card support
-        Web sockets support
-        Authentication and session support
-        Powerful REST based API
-        Support for a wide range
-        of scripting languages
-        Automatic updating option
-        Integrated and growing
-        marketplace of add-ons
-
-        Vulnérabilités dans OWASPBWA : http://sourceforge.net/apps/trac/owaspbwa/report/1
+        burp suite
 
 
         tester les scanner : http://code.google.com/p/wavsep/

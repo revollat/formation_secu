@@ -10,6 +10,9 @@ Pour chaque concepts:
 - Point de vu developpeur, admin, systeme, utilisateur.
 - quizz / vidéos en ligne / jeux / bout de code à ecrire / question ouverte (exemepl : ecrire un filtre wireshark pour par exmeple filtrer le protocole http si l'ip source = ...)
 - liens vers illustrations, doc, ...
+
+Chercher des ressources là : http://www.irongeek.com/i.php?page=security/hackingillustrated
+
 -----
 
 Une partie aussi sur la cryptographie.(utilisation de Sodium - https://github.com/alethia7/php-sodium)
