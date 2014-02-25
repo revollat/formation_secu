@@ -1,0 +1,27 @@
+
+s'appuier sur :
+PDF OWASP dans ce dossier pour présenter chaque faille.
+Vidéo : https://www.owasp.org/index.php/OWASP_Appsec_Tutorial_Series
+
+A1: Injection (SQL, shell, PHP, ...)
+http://www.youtube.com/watch?v=pypTYPaU7mM
+
+A2: Authentification / Session
+
+A3: XSS
+cf. http://scriptalert1.com/fr.html (ou doc word xss/doc dans ce dossier)
+http://www.youtube.com/watch?v=_Z9RQSnf8-g
+
+A4: Insecure Direct Object Reference
+
+A5: Security Misconfiguration
+
+A6: Sensitive data exposure
+
+A7: Missing fonction level access control
+
+A8: CSRF
+
+A9: Using components with know vulnerabilities
+
+A10: Unvalidated redirects and Forwards

@@ -264,89 +264,6 @@
 
 </section>
 
-<section>
-    Mechanisme de défense générique pour les applications WEB :
-
-    Handling user access to the application’s data and functionality to prevent
-    users from gaining unauthorized access
-    n Handling user input to the application’s functions to prevent malformed
-    input from causing undesirable behavior
-    n Handling attackers to ensure that the application behaves appropriately
-    when being directly targeted, taking suitable defensive and offensive
-    measures to frustrate the attacker
-    n Managing the application itself by enabling administrators to monitor its
-    activities and confi gure its functionality
-
-    Ces mecanisme de défense peuvent avoir des points faibles et sont par conséquent attaqués.
-
-    1 - mecaniqmes pour gérer l'accès utilisateur
-
-    * Authentification :
-    pour avoir un utilisateur autre que "anonyme", typiquement un formulaire login/pass est POSTé. pour des appli web sensibles on peut imaginer des methode plus sophistiqués :
-    certificats client, smartcard, challenge-response token.
-    En plus du processus de login, la couche authentification propose souvent de créer son compte, retrouver un mot de passe perdu ou changer de mot de passe ...
-    Les pb typiques du composant d'authentification : un attaquant peuc devnier les username (schéma de création des username prédictible par exemple), outrepasser la fonction de login en exploitant un défaut de conception/programmation
-
-    * session:
-    après avoir été authentifié, il daoit etres identifié pour les requetes suivante (le différencier des autres requetes des autres user)
-    Typiquement un token est attribué au user qui le renvoi dans chaque requetes (en général on utilise des cookies pour ça, mais on peut aussi le faire par champs formulaire caché ou par la query string (attention si on envoi par mail un lien contenant un identifiant de session)
-    Attaques : génération prédictible des tokens
-
-    * ACL :
-    qui à acces à quoi (ROLES: anonyme, user, editor, admin, ...)
-    les développeurs font souvent des (mauvaises) "suppositions" sur l'interaction des utilisateurs avec leur application web, et quelquefois omettent des controle d'accès sur certaines fonctions de l'applications
-
-    2- Gérér les données entrées par le user :
-    Les entrées utilisateur ne sont A PRIORI pas sûres.
-
-    * Divertisté des entrées : quelques fois les app peuvent imposer une validation stricte (ex. username < 8 car. alphanumériques pour un form de login),
-    dans d'autres cas l'application doit tolérer une large plage d'entrée possible
-    (ex. un champ adresse qui contient lettre, chiffre, espace, quote, guillements, ...) mais la vlidation est toujours possible( pas de balise HTML, ...)
-    Parfois on ne peut pas imposer une validation aussi stricte.
-
-    Il y a aussi des champs caché des formulaires ou des cookies qui peuvent etre modifié par un ataquant.
-
-    * Approches pour gérer les entrées utilisateur
-    En fonction du besoin, une approche différente sera utilisée pour le filtrage des donées entrée par l'utilisateur.
-    Une BLACKLIST : Le mecaniqme de validation bloque les pattern connus pour etre des attaques.
-    Ce n'est pas une très bonne approche car une meme attaque peut etre "encodée" et représenté de de différentes façons, et puis il faut ajouter constemment les nouvelles attaques à la blacklist.
-    Quelques fois c'est filtre sont très facile à duper:
-
-    If SELECT is blocked, try SeLeCt
-    n If or 1=1-- is blocked, try or 2=2--
-    n If alert(‘xss’) is blocked, try prompt(‘xss’)
-
-    ou encore utiliser des caractères non standars pour duper l'expression du filtre :
-
-    SELECT/*foo*/username,password/*foo*/FROM/*foo*/users
-    <!--<img%09onerror=alert(1) src=a>-->
-
-    Beaucoup de filtrer basé sur blacklist sont vulnérable à l'attauqe "NULL byte" (%00, représente fin de chaine en C et donc PHP basé sur C est vulnérable)
-    Ajouté avant une expression bloquée, le filtre s'arrete tout simplement et la chaine malicieuse n'est pas identifiée.
-
-    ex : <!-- %00<script>alert(1)</script> -->
-
-    WHITELIST : Plus efficace en terme de protection qu'une blacklist mais ce n'est pas toujours possible à mettre en place (filtrage trop strict)
-
-    SANITIZATION : on tente d'"assainir" les entrées pour éliminer les caractères malicieux qui pourrait poser pb.
-    c'est la solution la plus souple.
-
-    Pb avec les filtre à plusieurs passes :
-    si ce n'est pas fait correctemnt; on peut avoir des problèmes:
-    - si on enlève les l'expression <!-- <script> --> sans le faire recursivement alors <!-- <scr<script>ipt> va devenir <script>-->
-    - ordre de filtrage : si on enlève d'abord "../" puis "..\" alors "...\/" devient "../"
-    Pb avec les canonicalization (normalisation encodage des données):
-    Ex. double URL encoding : %2527 -> (URL decode) -> %27 -> (autorisé par le filtre car pas d'apostrophe) -> (application fait un URLdecode) -> ' (pwned)
-
-    3- Gérer les attaques
-
-    GERER ERREURS
-
-    4- Gérer l'application
-
-
-
-</section>
 
 <section>
 
@@ -516,7 +433,7 @@
 
         Hyperlien:
 
-        <a href=”?redir=/updates/update29.html”>What’s happening?</a>
+        <a href="?redir=/updates/update29.html">What's happening?</a>
 
         Le navigateur fait la requete HTTP :
 
@@ -541,7 +458,6 @@
         Cookie: SESS=GTnrpx2ss2tSWSnhXJGyG0LJ47MXRsjcFM6Bd
 
         username=daf&password=foo&redir=/secure/home.php&submit=log+in
-
 
         JAVASCRIPT:
         tache courantes:
@@ -604,76 +520,188 @@
         n Flash objects
         n Silverlight objects
 
+    </section>
 
+    <section>
+        Schémas de codages
+    </section>
+
+    <section>
+        les protocoles HTTP et le langague HTML sont basé sur du texte.
+        un attaquant va manipuler les codage dans les différentes couche pour provoquer des comportements inattendus.
+
+        URL ENCODING:
+        Les URL peuvent seulement contenir des caracères US-ASCII imprimables (i.e. de 0x20 à 0x7e cf. http://www.table-ascii.com/)
+        meme dans cet interval certain caractères sont résérvés car ils on des signifiations particulières (cf. parse URL par navigateur)
+        % + code hexa sur 2 caractère
+        ex :
+
+        %3d — =
+        %25 — %
+        %20 — Space
+        %0a — New line
+        %00 — Null byte
+
+        Tester avec : http://sec101.sourceforge.net/CAL9000/#charEncoder (mettre text url encodé dans champ "Encoded Text:" et selectionner "Url %XX" dans la liste "Select decoding type"
+        "+" est équivalant de %20 = caractère ESPACE
+
+        UNICODE:
+        Système d'encodage de caractères qui permet d'encoder tous les caractères dans toutes les langues du monde
+        Notemment utilisé par des attaquants pour bypasser les filtres
+        %u + code unicode hexa
+        Ex :
+        %u2215 — /
+        %u00e9 — é
+
+        HTML encoding:
+        pour intégrer dans un document HTML des caractères qui serait normalement inteprété.
+
+        <!--
+        &quot; — "
+        &apos; — '
+        &amp; — &
+        &lt; — <
+        &gt; — >
+        -->
+
+        tous les caactères ASCII on un codage HTML correspondant :
+        Ex :
+        &#34; — "
+        &#39; — '
+
+        Rapport avec le test de failles XSS : si la réponse renvoi l'input tel quelle -> XSS probable, si l'input est renvoyé avec les caractères encodé -> probable pb XSS
+
+        BASE64:
+        Pour représenter n'importe quelle donnée binaire sous forme ASCII
+        Ex: transmission binaire dans des cookies, ou encore pour obfusquer certaines données
 
     </section>
+
+</section>
+
+<section>
+    Mechanisme de défense de base pour les applications WEB :
+
+    Handling user access to the application’s data and functionality to prevent
+    users from gaining unauthorized access
+
+    n Handling user input to the application’s functions to prevent malformed
+    input from causing undesirable behavior
+
+    n Handling attackers to ensure that the application behaves appropriately
+    when being directly targeted, taking suitable defensive and offensive
+    measures to frustrate the attacker
+
+
+    Ces mecanisme de défense peuvent avoir des points faibles et sont par conséquent attaqués.
+
+    1 - mecaniqmes pour gérer l'accès utilisateur
+
+    * Authentification :
+    pour avoir un utilisateur autre que "anonyme", typiquement un formulaire login/pass est POSTé. pour des appli web sensibles on peut imaginer des methode plus sophistiqués :
+    certificats client, smartcard, challenge-response token.
+    En plus du processus de login, la couche authentification propose souvent de créer son compte, retrouver un mot de passe perdu ou changer de mot de passe ...
+    Les pb typiques du composant d'authentification : un attaquant peuc devnier les username (schéma de création des username prédictible par exemple), outrepasser la fonction de login en exploitant un défaut de conception/programmation
+
+    * session:
+    après avoir été authentifié, il daoit etres identifié pour les requetes suivante (le différencier des autres requetes des autres user)
+    Typiquement un token est attribué au user qui le renvoi dans chaque requetes (en général on utilise des cookies pour ça, mais on peut aussi le faire par champs formulaire caché ou par la query string (attention si on envoi par mail un lien contenant un identifiant de session)
+    Attaques : génération prédictible des tokens
+
+    * ACL :
+    qui à acces à quoi (ROLES: anonyme, user, editor, admin, ...)
+    les développeurs font souvent des (mauvaises) "suppositions" sur l'interaction des utilisateurs avec leur application web, et quelquefois omettent des controle d'accès sur certaines fonctions de l'applications
+
+    2- Gérér les données entrées par le user :
+    Les entrées utilisateur ne sont A PRIORI pas sûres.
+
+    * Divertisté des entrées : quelques fois les app peuvent imposer une validation stricte (ex. username < 8 car. alphanumériques pour un form de login),
+    dans d'autres cas l'application doit tolérer une large plage d'entrée possible
+    (ex. un champ adresse qui contient lettre, chiffre, espace, quote, guillements, ...) mais la vlidation est toujours possible( pas de balise HTML, ...)
+    Parfois on ne peut pas imposer une validation aussi stricte.
+
+    Il y a aussi des champs caché des formulaires ou des cookies qui peuvent etre modifié par un ataquant.
+
+    * Approches pour gérer les entrées utilisateur
+    En fonction du besoin, une approche différente sera utilisée pour le filtrage des donées entrée par l'utilisateur.
+    Une BLACKLIST : Le mecaniqme de validation bloque les pattern connus pour etre des attaques.
+    Ce n'est pas une très bonne approche car une meme attaque peut etre "encodée" et représenté de de différentes façons, et puis il faut ajouter constemment les nouvelles attaques à la blacklist.
+    Quelques fois c'est filtre sont très facile à duper:
+
+    If SELECT is blocked, try SeLeCt
+    n If or 1=1-- is blocked, try or 2=2--
+    n If alert(‘xss’) is blocked, try prompt(‘xss’)
+
+    ou encore utiliser des caractères non standars pour duper l'expression du filtre :
+
+    SELECT/*foo*/username,password/*foo*/FROM/*foo*/users
+    <!--<img%09onerror=alert(1) src=a>-->
+
+    Beaucoup de filtrer basé sur blacklist sont vulnérable à l'attauqe "NULL byte" (%00, représente fin de chaine en C et donc PHP basé sur C est vulnérable)
+    Ajouté avant une expression bloquée, le filtre s'arrete tout simplement et la chaine malicieuse n'est pas identifiée.
+
+    ex : <!-- %00<script>alert(1)</script> -->
+
+    WHITELIST : Plus efficace en terme de protection qu'une blacklist mais ce n'est pas toujours possible à mettre en place (filtrage trop strict)
+
+    SANITIZATION : on tente d'"assainir" les entrées pour éliminer les caractères malicieux qui pourrait poser pb.
+    c'est la solution la plus souple.
+
+    Pb avec les filtre à plusieurs passes :
+    si ce n'est pas fait correctemnt; on peut avoir des problèmes:
+    - si on enlève les l'expression <!-- <script> --> sans le faire recursivement alors <!-- <scr<script>ipt> va devenir <script>-->
+    - ordre de filtrage : si on enlève d'abord "../" puis "..\" alors "...\/" devient "../"
+    Pb avec les canonicalization (normalisation encodage des données):
+    Ex. double URL encoding : %2527 -> (URL decode) -> %27 -> (autorisé par le filtre car pas d'apostrophe) -> (application fait un URLdecode) -> ' (pwned)
+
+    3- Gérer les attaques
+
+    GERER ERREURS:
+    intercepter les erreurs "inattendues" (en PHP try-catch)
+    En production ne pas afficher de debug ou de messages d'erreur système (qui pourrait dévoiler des informations sensibles)
+
+    Maintient d'un "Audit Log" :
+    - log authentification : succes et echecs
+    - montant transaction bancaire
+    - tentative d'acces bloqué par mécanisme ACL
+    - requetes contenant des chaine connues pour etre malveillantes
+    - .. et aussi l'heure, l'adresse IP et le username (si authentifié)
+
+    ces log doivent etre BIEN PROTEGE des accès en lecture/ecriture (en séparant les log sur une machine isolé qui accepte des entrée seulement de l'application principale)
+
+    Réagir aux attaques:
+    Si des attaques sont détécté (chaine malicieuses blacklisté), scan application :
+    on peut tenter de prendre des mesures comme mettre des protection en plus (captcha pour continuer la navigation) ou encore couper la session de l'attaquant si il est authentifié
 
 
 </section>
 
 <section>
+
     <section>
 
-        http://sectools.org/
-
-        Les outils de Kali :
-
-        burp suite
-
-
-        tester les scanner : http://code.google.com/p/wavsep/
-
+        <h2>Tour d'horizon du TOP 10 OWASP</h2><br>
+        <small>/cours/tour_owasp_top10/cours.txt</small><br>
 
     </section>
+
 </section>
 
 <section>
 
     <section>
-        <h2>test notes</h2>
-        <p>avec des note inclues (press 's')</p>
-        <aside class="notes">
-            Une note passe ...
-        </aside>
-    </section>
 
-    <section>
-    <pre><code data-trim>
-        (def lazy-fib
-        (concat
-        [0 1]
-        ((fn rfib [a b]
-        (lazy-cons (+ a b) (rfib b (+ a b)))) 0 1)))
-    </code></pre>
-    </section>
+        <h2>Mapping de l'application</h2>
 
-    <section>
-        <p class="fragment" data-fragment-index="3">Appears last</p>
-        <p class="fragment" data-fragment-index="1">Appears first</p>
-        <p class="fragment" data-fragment-index="2">Appears second</p>
-    </section>
 
-    <section>
-        <h2>Video</h2>
-        <video width="320" height="240" controls src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
-    </section>
+        * Enumération du contenu et des fonctionalités :
 
-    <section>
-        <iframe width="560" height="315" src="//www.youtube.com/embed/CDbWvEwBBxo?rel=0" frameborder="0" allowfullscreen></iframe>
-    </section>
+        web spidering:
+        Burp Suite
+        robots.txt peut contenir des informations sensibles ...
 
-    <section>
-        <p class="fragment grow">grow</p>
-        <p class="fragment shrink">shrink</p>
-        <p class="fragment roll-in">roll-in</p>
-        <p class="fragment fade-out">fade-out</p>
-        <p class="fragment current-visible">visible only once</p>
-        <p class="fragment highlight-current-blue">blue only once</p>
-        <p class="fragment highlight-red">highlight-red</p>
-        <p class="fragment highlight-green">highlight-green</p>
-        <p class="fragment highlight-blue">highlight-blue</p>
-    </section>
 
+    </section>
 
 </section>
 
