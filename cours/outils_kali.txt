@@ -1,0 +1,35 @@
+
+Applications pour s'entrainer :
+=============================
+
+Mutillidae II version 2.6.3.1
+
+OWASP Bricks
+
+Damn Vulnerable Web Application
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Application réalistes :
+======================
+
+OWASP Vicnum (jeux cf. http://vicnum.ciphertechs.com/)
+
+WackoPicko
+
+---------
+
+Pour tester l'efficacité des scanner web : WIVET
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Interception proxy : Burp Suite
+
+Scanner de vulnérabilité : w3af et nikto
+
+SQLi : SQLmap
+
+XSS : BeEF
+
+Brute force : THC Hydra, JTR.
