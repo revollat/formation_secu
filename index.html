@@ -388,9 +388,11 @@
 
         https://www.owasp.org/index.php/Category:OWASP_CAL9000_Project (http://sec101.sourceforge.net/CAL9000/)
 
+        tp/tech/tcpip/paquets.txt
+
         tp/anatomie/http/netcat.txt
 
-        tp/tech/tcpip/paquets.txt
+        tester burp interception proxy avec webgoat / general / http basic
 
 
     </section>
@@ -692,28 +694,166 @@
 <section>
 
     <section>
+        Contourner les contrôles coté client.
+    </section>
 
-        <h2>Mapping de l'application</h2>
+    <section>
+        - Il y a des données transmisses du client vers le serveur qui sont "cachées" (et qui peuvent etre chiffrées / obfusqué) . Il ne faut a priori pas faire confiance à ces données qui sont entièrement controlé coté client et peuvenet etre falsifiées.
+
+        * champs formulaire cachés (hidden)
+        * Cookies
+        * paramètres dans URL
+        * Referrer header
+
+        - Formulaire HTML
+
+        * Max lenght dans champ quantity
+
+        <form method=”post” action=”Shop.aspx?prod=1”>
+            Product: iPhone 5 <br/>
+            Price: 449 <br/>
+            Quantity: <input type=”text” name=”quantity” maxlength=”1”> <br/>
+            <input type=”hidden” name=”price” value=”449”>
+            <input type=”submit” value=”Buy”>
+        </form>
+
+        * Validation par script
+
+        <form method="post" action="Shop.aspx?prod=2" onsubmit="return validateForm(this)">
+        Product: Samsung Multiverse <br/>
+        Price: 399 <br/>
+        Quantity: <input type=”text” name=”quantity”> (Maximum quantity is 50)
+        <br/>
+        <input type=”submit” value=”Buy”>
+        </form>
+        <script>function validateForm(theForm)
+        {
+            var isInteger = /^\d+$/;
+            var valid = isInteger.test(quantity) &&
+                    quantity > 0 && quantity <= 50;
+            if (!valid)
+                alert(’Please enter a valid quantity’);
+            return valid;
+        }
+        </script>
+
+        * Elements "Disabled"
+
+        <form method=”post” action=”Shop.aspx?prod=5”>
+            Product: Blackberry Rude <br/>
+            Price: <input type=”text” disabled=”true” name=”price” value=”299”>
+            <br/>
+            Quantity: <input type=”text” name=”quantity”> (Maximum quantity is 50)
+            <br/>
+            <input type=”submit” value=”Buy”>
+        </form>
+
+        - => La seule manière de sécuriser les données envoyées par le client est de les valider coté serveur
 
 
-        * Enumération du contenu et des fonctionalités :
+        Q & A :
 
-        Burp Suite :
-        http://portswigger.net/burp/help/suite_gettingstarted.html
-        http://portswigger.net/burp/help/suite_usingburp.html
+        Q1 : Comment le Client pourrais transmettre des données qui empeche la modification à la volée (Data tempering en anglais) ?
 
-        http://portswigger.net/burp/help/proxy.html
-        http://portswigger.net/burp/help/decoder.html
-        http://portswigger.net/burp/help/spider.html
-        http://portswigger.net/burp/help/repeater.html
-        http://portswigger.net/burp/help/intruder.html
-        http://portswigger.net/burp/help/sequencer.html
-        http://portswigger.net/burp/help/comparer.html
+        A1 : Les donénes peuvent etre chifrées.
+
+        Q2 : Un développeur veut emepcher les attaques "brute force" de la fonction de login. Il décide de d'enregistrer le nombre de tentatives de login échouées dans un cookie chiffré.
+        Si le nombre de tentatives dépassent 5, alors on bloque les requetes de ce client. Comment cette défense peut etre outrepassée ?
+
+        A2: Il suffit à l'attaquant d'empecher la soumission du cookie qui indique le nombre d'essais de login echoués (désactiver cookie dans navigateur ou avec outils comme burp)
+        Une autre défense c'est d'utiliser un Captcha dans le form de login ou bloquer l'IP source après 5 tentatives échouées (Mais ça peut bloquer un paquet de gens derrière une meme ip (Proxy / NAT))
+
+        Q3 : Y'a t-il moyen pour une application de s'assurer qu'une validation à été executée coté client.
+
+        A3 : NON , tout ce que se passe coté client est entièrement sous le controle de l'utilisateur.
+
+        TP etc ...
+        ==========
+
+        Bypass Maxlenght (avec firebug en modifiant directement maxlenght et size) dans page : http://owaspbwa/mutillidae/index.php?page=login.php
+
+        Video : Mutillidae: Two Methods to Bypass Javascript Validation : http://www.youtube.com/watch?v=e0M-qJYhCnk
+
+        TP: exercice avec la page (security level =1) :http://owaspbwa/mutillidae/index.php?page=dns-lookup.php
+        Injecter (avec Burp) :
+        <script>alert('test')</script>
+
+        TP : WebGoat / Parameter tempering
 
 
     </section>
 
 </section>
+
+<section>
+
+    <section>
+        Attaquer l'authentification  et la gestion de la session :
+
+    </section>
+
+    <section>
+
+
+        TP, etc ...
+        ============
+
+
+
+        Mutillidae: Using Hydra to Brute Force Web
+        Forms Based Authentication
+        http://www.youtube.com/wat
+        ch?v=SsUUyizhS60
+
+        Mutillidae: Bypass Authentication using SQL
+        Injection
+        http://www.youtube.com/wat
+        ch?v=0_AN5FKsxaw
+
+        Mutillidae: Bypass Authentication via
+        Authentication Token Manipulation
+        http://www.youtube.com/wat
+        ch?v=mEbmturLljU
+
+        Mutillidae: Brute Force Authentication using
+        Burp-Intruder
+        http://www.youtube.com/wat
+        ch?v=frtkNB5G3vI
+
+        Mutillidae: Analyze Session Token
+        Randomness using Burp-Suite Sequencer
+        http://www.youtube.com/wat
+        ch?v=kNSAhKiXctA
+
+
+    </section>
+
+</section>
+
+<!--<section>-->
+
+    <!--<section>-->
+
+        <!--<h2>Tool : Burp Suite</h2>-->
+
+        <!--Burp Suite :-->
+        <!--http://portswigger.net/burp/help/suite_gettingstarted.html-->
+        <!--http://portswigger.net/burp/help/suite_usingburp.html-->
+
+        <!--http://portswigger.net/burp/help/proxy.html-->
+        <!--http://portswigger.net/burp/help/decoder.html-->
+        <!--http://portswigger.net/burp/help/spider.html-->
+        <!--http://portswigger.net/burp/help/repeater.html-->
+        <!--http://portswigger.net/burp/help/intruder.html-->
+        <!--http://portswigger.net/burp/help/sequencer.html-->
+        <!--http://portswigger.net/burp/help/comparer.html-->
+
+
+        <!--Spidering Web Applications with Burp-Suite : tp\tools\burp\spidering.doc  (http://www.youtube.com/watch?v=P52EuH9MnTs)-->
+
+    <!--</section>-->
+
+<!--</section>-->
 
 <section>
     https://securityinabox.org/fr

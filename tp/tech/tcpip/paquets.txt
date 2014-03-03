@@ -5,8 +5,6 @@ Capture samples là : http://wiki.wireshark.org/SampleCaptures#HyperText_Transpo
 
 parler de la requete DNS
 
-utilisation de netcat
-
 http://www.plixer.com/blog/scrutinizer/free-wireshark-training-packet-capture-101/
 
 Filtre de capture et d'affichage :
@@ -15,3 +13,7 @@ http://wiki.wireshark.org/CaptureFilters ET http://wiki.wireshark.org/DisplayFil
 
 Challenges honeynet (forensic - analyse de paquets) : http://www.honeynet.org/challenges
 
+MOT DE PASSE :
+
+Sniff mot de passe avec webgoat / insecure communication / insecure login
+March sur un hub (sur switch il faut faire ARP spoofing ou ARP poisoning :http://fr.wikipedia.org/wiki/ARP_poisoning)
