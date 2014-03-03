@@ -1,20 +1,5 @@
 
 Faire test avec
 
-nc example.org 80
-
-referrer spoofing (exemple de falsification d'entete), exemple du "Referer" :
-http://www.whatismyreferer.com/
-
--------------
-
-nc www.whatismyreferer.com 80
-
-GET / HTTP/1.1
-Host: www.whatismyreferer.com
-Referrer: mypage.com
-User-Agent: my-browser
-
----------------
 
 
