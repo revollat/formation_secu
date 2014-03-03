@@ -39,72 +39,13 @@
 </section>
 
 <section>
-
-    <section>
-        <h1>INTRO</h1>
-    </section>
-
-    <section>
-
-        Une bonne raison d'avior choisi cette option : http://www.gouvernement.fr/premier-ministre/cybersecurite-le-premier-ministre-annonce-ses-priorites
-
-        le but du cours est d'avoir une vue d'ensemble des notions de sécurité informatique appliqué aux applications web.
-
-        Demande des compétences dans de nombreux domaines : admin sys / admin réseau / développement /  ...
-
-        evolue très vite.
-
-        la sécurité semble un notion intutive mais est très difficile à définir. <br/>
-        Les tentatives de "formalisation" de la notion de sécurité ne sont pas très utiles pour créer de vrais aplications :<br/>
-
-        Une tentative de formalisation (1960) : A system is secure if and only if it starts in a secure state and cannot
-        enter an insecure state.
-
-        <ul>
-            <li>Il n'est quasi plus possible d'enumérer/distinguer les etats sécurisé et insécurisé d'une application a cause de la complexité des ordinateurs</li>
-            <li>Une assertion comme "Je ne veux pas que les autres lisent mes mails" ne se formalise pas comme par magie en des contraintes sur le logiciel</li>
-            <li>Très difficile d'analyser le comportement du logiciel de façon exhaustive (à cause du "problème de l'arret" par exemple)</li>
-        </ul>
-
-        Il faut donc une approche basée sur la gestion du risque (Risk managment). Pensez aux fonctionnement des assurances.
-
-        Des nomenclatures comme le "Common Weakness Enumeration" (CWE) permette aux gens de parler des memes vulnérabilités et de se comprendre.
-        Le catalogue CWE actuel est un arbre (avec des catégories et des sous catégories) qui contient environ 500 éléments (qui sont des feuilles ou des nœuds de l'arbre). On y trouve des types de faiblesses tels que : "buffer overflow", "format strings", "contrôle insuffisant des données", "fuite d'information", etc.
-        http://cwe.mitre.org/
-
-
-        Le Common Vulnerabilities and Exposures (CVE) quand à lui tente de répértorier les failles présente dans les logiciels.
-        Les identifiants CVE sont des références de la forme CVE-AAAA-NNNN (AAAA est l'année de publication et NNNN un numéro incrémenté).
-
-        De nombreux systèmes de séécurité IDS/IPS, Scanner, ... utilisent cette nomenclature.
-
-        Une approche pratique de la sécurité :
-        <ul>
-            <li>Apprendre des erreurs des autres (ou de ces propres erreurs)</li>
-            <li>Créer ses outils pour détécter et corriger les problèmes</li>
-            <li>S'attendre au pire (loi de Murphy)</li>
-        </ul>
-
-        (quelques) Sources de pb :
-        <ul>
-            <li>Les navigateurs, format des document, protocoles de communications : on évolué des façon chaotique se qui pose des pb.</li>
-            <li>L'utilisateur lambda sans connaissance : Ne peux pas causer beaucoup de dégat en utilisant un traitement de texte par exemple, il en va autrement pour l'utilisation d'une application</li>
-            <li>Dans le monde du web pas de séparation claire entre Programme et Données tout est "poreux" qui accru le risue de sécurité</li>
-            <li>Il n'y a pas de consensus général de la part des editeur logiciels sur la sécurité</li>
-        </ul>
-
-        Porte d'entrée dans un LAN en contournent les sécurités classiques (firewall par exemple)
-
-    </section>
-
+    <h2>INTRO</h2><br/>
+    <small>cours/0 - Intro.odt</small><br>
 </section>
 
 <section>
 
     <section>
-        <aside class="notes">
-            Chronologie qui va permettre de poser un peu de vocabulaire et revenir sur les concepts de base d'Internet et de la sécurité.
-        </aside>
         <h1>La préhistoire ...</h1>
     </section>
 
@@ -153,12 +94,12 @@
     <section>
         <h2>Années 90</h2>
         <p class="fragment" data-fragment-index="1">1993 : Le navigateur Mosaic devient populaire pour le WWW (qui représente 1% du traffic internet à l'époque)</p>
-        <p class="fragment" data-fragment-index="3">le e-commerce se développe et le SPAM avec (origine du mot)</p>
-        <p class="fragment" data-fragment-index="4">Fin 90 : "Guerre des navigteurs" (Netscape vs. Microsoft IE</p>
-        <p class="fragment" data-fragment-index="5">1998 : Google ouvre son premier bureau en californie</p>
-        <p class="fragment" data-fragment-index="6">1999 : Napster</p>
-        <p class="fragment roll-in" data-fragment-index="5">Naissance de l' "industrie de la sécurité informatique"</p>
-        <p class="fragment roll-in" data-fragment-index="6">Premiers DDoS, premiers BotNet</p>
+        <p class="fragment" data-fragment-index="2">le e-commerce se développe et le SPAM avec (origine du mot)</p>
+        <p class="fragment" data-fragment-index="3">Fin 90 : "Guerre des navigteurs" (Netscape vs. Microsoft IE</p>
+        <p class="fragment" data-fragment-index="4">1998 : Google ouvre son premier bureau en californie</p>
+        <p class="fragment" data-fragment-index="5">1999 : Napster</p>
+        <p class="fragment roll-in" data-fragment-index="6">Naissance de l' "industrie de la sécurité informatique"</p>
+        <p class="fragment roll-in" data-fragment-index="7">Premiers DDoS, premiers BotNet</p>
     </section>
 
     <section>
@@ -171,747 +112,90 @@
     </section>
 
     <section>
-        Hall of fame HACKERS :
-
-        Top black hat hackers:
-        Robert Tappan Morris - creator of the Morris Worm in 1988, which was considered the first computer warm on the Internet
-        Kevin Mitnik (aka condor) - commited arious computer and communications-related crimes. He was caught in 1995 with the help of security expert Tsutomu Shimomura
-        Jonatan James (aka c0mrade) - committed a series of intrusions into various systems, he installed a backdoor into a Defense Threat Reduction Agency server, that enabled him to view sensitive emails and capture employee usernames and passwords. He also cracked into NASA computers and stole software worth $1.7 million
-        Adrian Lamo - broke into several high-profile computer networks, like The New York Times, Yahoo!, and Microsoft
-        Michael Calce (aka MafiaBoy) - launched a series of highly publicized denial-of-service attacks gainst large commercial websites including Yahoo!, Fifa.com, Amazon.com, Dell and CNN
-        Kevin Poulsen - took over of all of the telephone lines for Los Angeles guaranteeing that he would be the 102nd caller and win the prize of Porsche
-
-        Top white hat hackers:
-        Tsutomu Shimomura - he assisted FBI with tracking down the Kevin Mitnik
-        Steve Wozniak - inventor and computer programmer. He co-founded Apple Computer (now Apple Inc.). He also founded Wheels of Zeus (WOZ) to create wireless GPS technology.
-        Richard Matthew Stallman - is a software freedom activist and computer programmer. Best known for launching the GNU Project and founding the Free Software Foundation a
-        Linus Torvalds - he is a software engineer, who was the principal force behind the development of the Linux kernel, later on he became the chief architect of the Linux kernel.
-        Tim Berners Lee (aka TimBL) - best known as the inventor of the World Wide Web, creator of the system that we are using to navigate the Internet in order to find files, folders, and websites.
-        Julian Assange - he is known as the editor-in-chief and founder of WikiLeaks, which publishes secret information.
-
+        <h2>Bonus : Hall of fame des Hackers</h2>
+        <small>cours/hall_of_fame.odt</small><br>
     </section>
 
     <section>
-        http://www.evolutionoftheweb.com/
-        http://www.tiki-toki.com/timeline/entry/37263/Politics-and-the-Internet
-        http://www.internetsociety.org/internet/what-internet/history-internet
+        Des infos en plus :<br/>
+        http://www.evolutionoftheweb.com/<br/>
+        http://www.tiki-toki.com/timeline/entry/37263/Politics-and-the-Internet<br/>
+        http://www.internetsociety.org/internet/what-internet/history-internet<br/>
     </section>
 
 </section>
 
 
 <section>
-
-    <section data-background="https://v4s.yimg.com/so/7274/7573243044_e8a04695cb_c.jpg">
-        <aside class="notes">
-            Rapide tour des techno qui font fonctionner le réseau Internet.
-        </aside>
-        <h1 style="color: white;">De quoi "Internet" est-il le nom ?</h1>
-    </section>
-
-    <section>
-
-        <p>Inter-Net : Réseaux interconnectés, 40.000 opérateurs AS (Autonomous System)</p>
-        <br>
-        <p class="fragment" data-fragment-index="1">
-            Qui controle Internet ?<br>
-            => Personne car (Controle <==> Pouvoir de détruire) et personne ne peut "détuire" internet (Mythe du "switch internet")
-        </p>
-        <br>
-        <p class="fragment" data-fragment-index="2">
-            Si on coupe l'Internet en 2 on se retouve avec 2 réseau indépendant (comme le corail)<br>
-            => Pas de centre : on peut enlever n'importe quell partie ça continue de marcher.<br>
-            => Evidemment vous ne pourrais alors plus accéder à certaine parties du réseau !
-        </p>
-        <br>
-        <p class="fragment" data-fragment-index="3">Quand vous allumez votre modem vous agrandissez le réseau Internet, lorsque vous l'éteigniez vous rétrécissez le réseau</p>
-
-
-    </section>
-
-    <section>
-        <p>n'importe quell point du réseau peut émettre et/ou receptionner des données/paquets</p>
-        <br>
-        <p class="fragment" data-fragment-index="1">
-            Sur le réseau vous etes identifié à l'aide d'une adresse IP attribuée par l'IANA (comme un numéro de téléphone)
-        </p>
-        <br>
-        <p class="fragment" data-fragment-index="2">
-            Mais contrairement au réseau téléphonique, Internet est basé sur la "commutation de paquets" (IP)<br>
-
-            la poste par exemple : si on peut ecrire que 10 caracteres sur une "lettre (numérotée)" il faut plusieurs "lettres" plsieurs paquets
-            Le Bureau de poste est un "routeur". Il y a des LAN (département géographique par exemple) et des WAN (monde entier, enfin là ou y'a la poste!)<br>
-
-            Premier paquet : "lo and behold" synonyme de "Surprise!"
-
-            TCP (Transmission Control Protocol) et IP (Internet Protocol), qui ont été les premiers à être définis. Le document de référence est RFC 1122.
-            Le réseau Arpanet adopte le 1er janvier 1983 la suite de protocoles TCP/IP qui sera la base d'Internet.
-
-            document de référence
-
-            http://www.commentcamarche.net/contents/internet-2096316497
-
-            TCP/IP:
-            http://upload.wikimedia.org/wikipedia/commons/7/7e/Comparaison_des_mod%C3%A8les_OSI_et_TCP_IP.png
-
-            http://www.wtcs.org/snmp4tpc/images/IP-Header.jpg
-
-            Parler routeur.
-
-            Parler DNS : http://www.commentcamarche.net/contents/518-dns-systeme-de-noms-de-domaine
-
-        </p>
-    </section>
-
-
-</section>
-
-
-<section>
-
-    <section>
-        <h1>Anatomie du web</h1>
-    </section>
-
-    <section>
-        <h2>Tout commence par une URL</h2>
-    </section>
-
-    <section>
-        URL : Uniform Resource Locator. Identifiant vers une ressource.
-        <img src="images/format_url.png" alt=""/>
-
-        <ul>
-            <li>1 - Scheme: le protocole utilisé (http, https, ftp, data:, javascript:)</li>
-            <li>2 - Séparateur d'URL hierarchique. Il y a des cas ou il n'est pas présent :
-                <ul>
-                    <li>mailto:user@example.com?subject=Hello+world</li>
-                    <li>http://fr.wikipedia.org/wiki/Data_URI_scheme</li>
-                    <li>javascript:alert(2+2)</li>
-                </ul>
-            </li>
-            <li>3 - Authentification</li>
-            <li>4 - Adresse IPv4, IPv6, nom DNS, ...</li>
-            <li>5 - Port TCP</li>
-            <li>6 - Chemin hierarchique</li>
-            <li>7 - Query string (utile coté serveur)</li>
-            <li>8 - Fragment (Utile coté client)</li>
-        </ul>
-
-        tp: anatomie/url/exemple.txt
-
-    </section>
-
-    <section>
-        <h2>HTTP</h2>
-
-        http://quiz.thefullwiki.org/Hypertext_Transfer_Protocol
-
-        http://www.commentcamarche.net/contents/520-le-protocole-http
-
-    </section>
-
-    <section>
-        HTTP : HyperText Transfert Protocol, est le protocole de comunication au coeur du WWW.
-        Conçus à la base pour récupérer du contenu staique il a évolué pour supporter des applications distribuées complexes.
-
-        HTTP/1.0 standard (RFC 1945)
-        HTTP/1.1 (RFC 2616) version actuelle (a venir : http://en.wikipedia.org/wiki/HTTP_2.0)
-
-        Protocole texte qui repose sur TCP/IP
-
-        la première version (HTTP/0.9) ne permet pas d'ajout de meta-data :
-        une seul ligne texte pour interroger le serveur web :
-
-        Exemple :
-
-        GET /index.html
-
-        pas de possibilité pour le client de donner une préférence de langue, ou les format de documents acceptés.
-        Pour le serveur, pas de possibilité de de dire au client que le document n'existe plus ou que c'est un autre format que du HTML par exemple
-
-        pas de possibilité d'avoir plusieurs hostname sur une meme IP
-
-        En HTTP/1.0 puis 1.1, possibilité d'ajouter des entetes (HEADERS)
-        Ex : User-Agent (Info navigateur), Host (hostname), Accept (MIME document types), Accept-Language, and Referer
-        suivi d'une ligne vide et eventuellement un payload
-        http://en.wikipedia.org/wiki/List_of_HTTP_header_fields
-
-        Pb sécu des format de transmission des entetes (cf. page 67 de tangled web)
-        page 69 pour pb d'entes dupliquées.
-
-        type de requetes HTTP: (cf. http://julien-pauli.developpez.com/tutoriels/web/http/?page=page_3)
-        GET : récupération de documents
-        HEAD: pareil à GET mais renvoi seulement les entetes HTTP (pour vérifier si le doc à changé par exemple)
-        POST: envoi payload sur le serveur (mis à jour de ressources)
-        PUT: Creations ressources
-        DELETE: Suppression ressources
-        TRACE: Sorte de "ping" (le serveur doit retourner dans le corps de la réponse le contenu de la requete reçus (pour vérifier qu'il n'y a pas de proxy entre client et serveur)
-        CONNECT: Tunneling avec un proxy HTTP
-
-        parler des proxy HTTP:
-        Intermédiaire entre le client et le wite internet destination
-        Le proxy peut aussi faire du caching, authentification, access control
-        lorsque HTTPS est utilisé, le navigateur utilise le proxy comme un relai TCP (methode CONNECT)
-        On utilisera des proxy un peu modifier pour tester la sécurité des sites. Modifier la requete et la réponse
-
-        Parler API RESTful et exemple là :http://www.vinaysahni.com/best-practices-for-a-pragmatic-restful-api
-        Ex :
-        http://wahh-app.com/search?make=ford&model=pinto
-        en Rest deviendrai :
-        http://wahh-app.com/search/ford/pinto
-
-
-        Vir exemple avec console chrome (ou firebug) : cf. images/console_http.jpg
-
-        Code réponse du serveur : cf. http://julien-pauli.developpez.com/tutoriels/web/http/?page=page_4#LIV-B
-        Quand il y a une erreur dans une appli web il FAUT renvoyer le code retour correspondant (au lieu de renvoyer 200 OK avec le message d'erreur dans le corp du document, ça facilite les tests notemment)
-
-        cookies :
-        premet au serveur de stocker des pairs clef/valeur coté client (entete Set-Cookie dans la réponse HTTP)
-        Façon courante de maintenir des sessions et authentifier les requetes utilisateur
-        Attributs des cookies:
-        Expires:
-        DOmain: resstreindre à un domaine et pas au hostname
-        Secure attribute :  Prevents the resulting cookie from being sent over
-        nonencrypted connections.
-        HttpOnly attribute Removes the ability to read the cookie through the
-        document.cookie API in JavaScript. This is a Microsoft extension, although
-        it is now supported by all mainstream browsers.
-        --> exercies avec cookies en PHP
-
-        HTTPS et certificats:
-        HTTP = echanges en texte clair
-        solution : encapsuler HTTP dans une couche de transport chiffrée : Transport Layer Security (a.k.a SSL)
-        Cryptographie à clef publique (expliquer le concept, vidéo reférence, ...)
-        Des lef publiques d'autorité de certification sont à l'interieur de vos navigateurs (aller les voir dans la conf)
-
-        https://www.owasp.org/index.php/Category:OWASP_CAL9000_Project (http://sec101.sourceforge.net/CAL9000/)
-
-        tp/tech/tcpip/paquets.txt
-
-        tp/anatomie/http/netcat.txt
-
-        tester burp interception proxy avec webgoat / general / http basic
-
-
-    </section>
-
-
-    <section>
-        <h2>Coté serveur</h2>
-    </section>
-
-    <section>
-        Avant web entièrement statique. Maintenant beaucoup de contenu généré dynamiquement
-
-        paramètres qui permet au serveur de générer contenu pour un individu en particulier:
-        n In the URL query string
-        n In the fi le path of REST-style URLs
-        n In HTTP cookies
-        n In the body of requests using the POST method
-
-        En plus de ça le serveur peut utiliser les entetes HTTP (par exemple User-Agent pour otpimiser la réponse pour un device en particulier)
-
-        Technologies coté serveur:
-        n Scripting languages such as PHP, VBScript, and Perl
-        n Web application platforms such as ASP.NET and Java
-        n Web servers such as Apache, IIS, and Netscape Enterprise
-        n Databases such as MS-SQL, Oracle, and MySQL
-        n Other back-end components such as fi lesystems, SOAP-based web services,
-        and directory services
-
-
-    </section>
-
-
-    <section>
-        <h2>Coté client</h2>
-    </section>
-
-    <section>
-
-        HTML :
-        parseur HTML (page 95 de tangled web)
-        trouver des exemples à tester avec différents navigateurs
-
-        Hyperlien:
-
-        <a href="?redir=/updates/update29.html">What's happening?</a>
-
-        Le navigateur fait la requete HTTP :
-
-        GET /news/8/?redir=/updates/update29.html HTTP/1.1
-        Host: mdsec.net
-
-        FORMS:
-
-        <form action=”/secure/login.php?app=quotations” method=”post”>
-            username: <input type=”text” name=”username”><br>
-            password: <input type=”password” name=”password”>
-            <input type=”hidden” name=”redir” value=”/secure/home.php”>
-            <input type=”submit” name=”submit” value=”log in”>
-        </form>
-
-        -->
-
-        POST /secure/login.php?app=quotations HTTP/1.1
-        Host: wahh-app.com
-        Content-Type: application/x-www-form-urlencoded
-        Content-Length: 39
-        Cookie: SESS=GTnrpx2ss2tSWSnhXJGyG0LJ47MXRsjcFM6Bd
-
-        username=daf&password=foo&redir=/secure/home.php&submit=log+in
-
-        JAVASCRIPT:
-        tache courantes:
-        n Validating user-entered data before it is submitted to the server to avoid
-        unnecessary requests if the data contains errors
-        n Dynamically modifying the user interface in response to user actions — for
-        example, to implement drop-down menus and other controls familiar
-        from non-web interfaces
-        n Querying and updating the document object model (DOM) within the
-        browser to control the browser’s behavior (the browser DOM is described
-        in a moment)
-
-        DOM : Représentation abstraite du document HTML qui peut etre manipulée à partir de l'API (examples et exercice avec la console javascript)
-
-        Ajax (Asynchronous JavaScript and XML) : ensemble de technique de programmation permettant à une application web d'avoir le look'n'feel d'un logiciel classique.
-
-        Same origin policy : implémenté dans les navigateurs et prévoi d'empecher l'interaction entre contenus d'origine différents.
-        Basically, content received from one website is allowed to read
-        and modify other content received from the same site but is not allowed to
-        access content received from other sites.
-        En pratique, faire attention à quelques points:
-        A page residing on one domain can cause an arbitrary request to be made
-        to another domain (for example, by submitting a form or loading an
-        image). But it cannot itself process the data returned from that request.
-        n A page residing on one domain can load a script from another domain and
-        execute this within its own context. This is because scripts are assumed
-        to contain code, rather than data, so cross-domain access should not lead
-        to disclosure of any sensitive information.
-        n A page residing on one domain cannot read or modify the cookies or
-        other DOM data belonging to another domain.
-
-        These features can lead to various cross-domain attacks, such as inducing
-        user actions and capturing data. Further complications arise with browser
-        extension technologies, which implement same-origin restrictions in different
-        ways.
-
-        HTML5:
-        It introduces various new tags, attributes, and APIs that can be leveraged
-        to deliver cross-site scripting and other attacks
-
-        It modifi es the core Ajax technology, XMLHttpRequest, to enable two-way
-        cross-domain interaction in certain situations. This can lead to new crossdomain
-        attacks,
-
-        It introduces new mechanisms for client-side data storage, which can lead
-        to user privacy issues, and new categories of attack such as client-side SQL
-        injection,
-
-        Le "Web 2.0" : couverture d'attaque plus grande:
-
-        Heavy use of Ajax for performing asynchronous, behind-the-scenes requests
-        n Increased cross-domain integration using various techniques
-        n Use of new technologies on the client side, including XML, JSON, and Flex
-        n More prominent functionality supporting user-generated content, information
-        sharing, and interaction
-
-        Les plugins du navigateur :
-        n Java applets
-        n ActiveX controls
-        n Flash objects
-        n Silverlight objects
-
-    </section>
-
-    <section>
-        Schémas de codages
-    </section>
-
-    <section>
-        les protocoles HTTP et le langague HTML sont basé sur du texte.
-        un attaquant va manipuler les codage dans les différentes couche pour provoquer des comportements inattendus.
-
-        URL ENCODING:
-        Les URL peuvent seulement contenir des caracères US-ASCII imprimables (i.e. de 0x20 à 0x7e cf. http://www.table-ascii.com/)
-        meme dans cet interval certain caractères sont résérvés car ils on des signifiations particulières (cf. parse URL par navigateur)
-        % + code hexa sur 2 caractère
-        ex :
-
-        %3d — =
-        %25 — %
-        %20 — Space
-        %0a — New line
-        %00 — Null byte
-
-        Tester avec : http://sec101.sourceforge.net/CAL9000/#charEncoder (mettre text url encodé dans champ "Encoded Text:" et selectionner "Url %XX" dans la liste "Select decoding type"
-        "+" est équivalant de %20 = caractère ESPACE
-
-        UNICODE:
-        Système d'encodage de caractères qui permet d'encoder tous les caractères dans toutes les langues du monde
-        Notemment utilisé par des attaquants pour bypasser les filtres
-        %u + code unicode hexa
-        Ex :
-        %u2215 — /
-        %u00e9 — é
-
-        HTML encoding:
-        pour intégrer dans un document HTML des caractères qui serait normalement inteprété.
-
-        <!--
-        &quot; — "
-        &apos; — '
-        &amp; — &
-        &lt; — <
-        &gt; — >
-        -->
-
-        tous les caactères ASCII on un codage HTML correspondant :
-        Ex :
-        &#34; — "
-        &#39; — '
-
-        Rapport avec le test de failles XSS : si la réponse renvoi l'input tel quelle -> XSS probable, si l'input est renvoyé avec les caractères encodé -> probable pb XSS
-
-        BASE64:
-        Pour représenter n'importe quelle donnée binaire sous forme ASCII
-        Ex: transmission binaire dans des cookies, ou encore pour obfusquer certaines données
-
-    </section>
-
+    <h2>Techno Internet</h2>
+    <small>cours/1 - techno internet.odt</small><br>
 </section>
 
 <section>
-    Mechanisme de défense de base pour les applications WEB :
-
-    Handling user access to the application’s data and functionality to prevent
-    users from gaining unauthorized access
-
-    n Handling user input to the application’s functions to prevent malformed
-    input from causing undesirable behavior
-
-    n Handling attackers to ensure that the application behaves appropriately
-    when being directly targeted, taking suitable defensive and offensive
-    measures to frustrate the attacker
-
-
-    Ces mecanisme de défense peuvent avoir des points faibles et sont par conséquent attaqués.
-
-    1 - mecaniqmes pour gérer l'accès utilisateur
-
-    * Authentification :
-    pour avoir un utilisateur autre que "anonyme", typiquement un formulaire login/pass est POSTé. pour des appli web sensibles on peut imaginer des methode plus sophistiqués :
-    certificats client, smartcard, challenge-response token.
-    En plus du processus de login, la couche authentification propose souvent de créer son compte, retrouver un mot de passe perdu ou changer de mot de passe ...
-    Les pb typiques du composant d'authentification : un attaquant peuc devnier les username (schéma de création des username prédictible par exemple), outrepasser la fonction de login en exploitant un défaut de conception/programmation
-
-    * session:
-    après avoir été authentifié, il daoit etres identifié pour les requetes suivante (le différencier des autres requetes des autres user)
-    Typiquement un token est attribué au user qui le renvoi dans chaque requetes (en général on utilise des cookies pour ça, mais on peut aussi le faire par champs formulaire caché ou par la query string (attention si on envoi par mail un lien contenant un identifiant de session)
-    Attaques : génération prédictible des tokens
-
-    * ACL :
-    qui à acces à quoi (ROLES: anonyme, user, editor, admin, ...)
-    les développeurs font souvent des (mauvaises) "suppositions" sur l'interaction des utilisateurs avec leur application web, et quelquefois omettent des controle d'accès sur certaines fonctions de l'applications
-
-    2- Gérér les données entrées par le user :
-    Les entrées utilisateur ne sont A PRIORI pas sûres.
-
-    * Divertisté des entrées : quelques fois les app peuvent imposer une validation stricte (ex. username < 8 car. alphanumériques pour un form de login),
-    dans d'autres cas l'application doit tolérer une large plage d'entrée possible
-    (ex. un champ adresse qui contient lettre, chiffre, espace, quote, guillements, ...) mais la vlidation est toujours possible( pas de balise HTML, ...)
-    Parfois on ne peut pas imposer une validation aussi stricte.
-
-    Il y a aussi des champs caché des formulaires ou des cookies qui peuvent etre modifié par un ataquant.
-
-    * Approches pour gérer les entrées utilisateur
-    En fonction du besoin, une approche différente sera utilisée pour le filtrage des donées entrée par l'utilisateur.
-    Une BLACKLIST : Le mecaniqme de validation bloque les pattern connus pour etre des attaques.
-    Ce n'est pas une très bonne approche car une meme attaque peut etre "encodée" et représenté de de différentes façons, et puis il faut ajouter constemment les nouvelles attaques à la blacklist.
-    Quelques fois c'est filtre sont très facile à duper:
-
-    If SELECT is blocked, try SeLeCt
-    n If or 1=1-- is blocked, try or 2=2--
-    n If alert(‘xss’) is blocked, try prompt(‘xss’)
-
-    ou encore utiliser des caractères non standars pour duper l'expression du filtre :
-
-    SELECT/*foo*/username,password/*foo*/FROM/*foo*/users
-    <!--<img%09onerror=alert(1) src=a>-->
-
-    Beaucoup de filtrer basé sur blacklist sont vulnérable à l'attauqe "NULL byte" (%00, représente fin de chaine en C et donc PHP basé sur C est vulnérable)
-    Ajouté avant une expression bloquée, le filtre s'arrete tout simplement et la chaine malicieuse n'est pas identifiée.
-
-    ex : <!-- %00<script>alert(1)</script> -->
-
-    WHITELIST : Plus efficace en terme de protection qu'une blacklist mais ce n'est pas toujours possible à mettre en place (filtrage trop strict)
-
-    SANITIZATION : on tente d'"assainir" les entrées pour éliminer les caractères malicieux qui pourrait poser pb.
-    c'est la solution la plus souple.
-
-    Pb avec les filtre à plusieurs passes :
-    si ce n'est pas fait correctemnt; on peut avoir des problèmes:
-    - si on enlève les l'expression <!-- <script> --> sans le faire recursivement alors <!-- <scr<script>ipt> va devenir <script>-->
-    - ordre de filtrage : si on enlève d'abord "../" puis "..\" alors "...\/" devient "../"
-    Pb avec les canonicalization (normalisation encodage des données):
-    Ex. double URL encoding : %2527 -> (URL decode) -> %27 -> (autorisé par le filtre car pas d'apostrophe) -> (application fait un URLdecode) -> ' (pwned)
-
-    3- Gérer les attaques
-
-    GERER ERREURS:
-    intercepter les erreurs "inattendues" (en PHP try-catch)
-    En production ne pas afficher de debug ou de messages d'erreur système (qui pourrait dévoiler des informations sensibles)
-
-    Maintient d'un "Audit Log" :
-    - log authentification : succes et echecs
-    - montant transaction bancaire
-    - tentative d'acces bloqué par mécanisme ACL
-    - requetes contenant des chaine connues pour etre malveillantes
-    - .. et aussi l'heure, l'adresse IP et le username (si authentifié)
-
-    ces log doivent etre BIEN PROTEGE des accès en lecture/ecriture (en séparant les log sur une machine isolé qui accepte des entrée seulement de l'application principale)
-
-    Réagir aux attaques:
-    Si des attaques sont détécté (chaine malicieuses blacklisté), scan application :
-    on peut tenter de prendre des mesures comme mettre des protection en plus (captcha pour continuer la navigation) ou encore couper la session de l'attaquant si il est authentifié
-
-
+    <h1>Anatomie du web</h1>
+    <small>cours/2 - anatomie du web.odt</small><br>
 </section>
 
 <section>
-
-    <section>
-
-        <h2>Tour d'horizon du TOP 10 OWASP</h2><br>
-        <small>/cours/tour_owasp_top10/cours.txt</small><br>
-
-    </section>
-
+    <h2>Mechanisme de défense de base pour les applications WEB :</h2>
+    <small>cours/3 - mécanisme de défense.odt</small><br>
 </section>
 
 <section>
-
-    <section>
-        Contourner les contrôles coté client.
-    </section>
-
-    <section>
-        - Il y a des données transmisses du client vers le serveur qui sont "cachées" (et qui peuvent etre chiffrées / obfusqué) . Il ne faut a priori pas faire confiance à ces données qui sont entièrement controlé coté client et peuvenet etre falsifiées.
-
-        * champs formulaire cachés (hidden)
-        * Cookies
-        * paramètres dans URL
-        * Referrer header
-
-        - Formulaire HTML
-
-        * Max lenght dans champ quantity
-
-        <form method=”post” action=”Shop.aspx?prod=1”>
-            Product: iPhone 5 <br/>
-            Price: 449 <br/>
-            Quantity: <input type=”text” name=”quantity” maxlength=”1”> <br/>
-            <input type=”hidden” name=”price” value=”449”>
-            <input type=”submit” value=”Buy”>
-        </form>
-
-        * Validation par script
-
-        <form method="post" action="Shop.aspx?prod=2" onsubmit="return validateForm(this)">
-        Product: Samsung Multiverse <br/>
-        Price: 399 <br/>
-        Quantity: <input type=”text” name=”quantity”> (Maximum quantity is 50)
-        <br/>
-        <input type=”submit” value=”Buy”>
-        </form>
-        <script>function validateForm(theForm)
-        {
-            var isInteger = /^\d+$/;
-            var valid = isInteger.test(quantity) &&
-                    quantity > 0 && quantity <= 50;
-            if (!valid)
-                alert(’Please enter a valid quantity’);
-            return valid;
-        }
-        </script>
-
-        * Elements "Disabled"
-
-        <form method=”post” action=”Shop.aspx?prod=5”>
-            Product: Blackberry Rude <br/>
-            Price: <input type=”text” disabled=”true” name=”price” value=”299”>
-            <br/>
-            Quantity: <input type=”text” name=”quantity”> (Maximum quantity is 50)
-            <br/>
-            <input type=”submit” value=”Buy”>
-        </form>
-
-        - => La seule manière de sécuriser les données envoyées par le client est de les valider coté serveur
-
-
-        Q & A :
-
-        Q1 : Comment le Client pourrais transmettre des données qui empeche la modification à la volée (Data tempering en anglais) ?
-
-        A1 : Les donénes peuvent etre chifrées.
-
-        Q2 : Un développeur veut emepcher les attaques "brute force" de la fonction de login. Il décide de d'enregistrer le nombre de tentatives de login échouées dans un cookie chiffré.
-        Si le nombre de tentatives dépassent 5, alors on bloque les requetes de ce client. Comment cette défense peut etre outrepassée ?
-
-        A2: Il suffit à l'attaquant d'empecher la soumission du cookie qui indique le nombre d'essais de login echoués (désactiver cookie dans navigateur ou avec outils comme burp)
-        Une autre défense c'est d'utiliser un Captcha dans le form de login ou bloquer l'IP source après 5 tentatives échouées (Mais ça peut bloquer un paquet de gens derrière une meme ip (Proxy / NAT))
-
-        Q3 : Y'a t-il moyen pour une application de s'assurer qu'une validation à été executée coté client.
-
-        A3 : NON , tout ce que se passe coté client est entièrement sous le controle de l'utilisateur.
-
-        TP etc ...
-        ==========
-
-        Bypass Maxlenght (avec firebug en modifiant directement maxlenght et size) dans page : http://owaspbwa/mutillidae/index.php?page=login.php
-
-        Video : Mutillidae: Two Methods to Bypass Javascript Validation : http://www.youtube.com/watch?v=e0M-qJYhCnk
-
-        TP: exercice avec la page (security level =1) :http://owaspbwa/mutillidae/index.php?page=dns-lookup.php
-        Injecter (avec Burp) :
-        <script>alert('test')</script>
-
-        TP : WebGoat / Parameter tempering
-
-
-    </section>
-
+    <h2>Tour d'horizon du TOP 10 OWASP</h2><br>
+    <small>cours/tour_owasp_top10/OWASP Top 10 - 2013.pdf</small><br>
 </section>
 
 <section>
-
-    <section>
-        Attaquer l'authentification  et la gestion de la session (TOP OWASP A2)
-    </section>
-
-    <section>
-
-        Les technologies d'authentification :
-
-        n HTML forms-based authentication <-- la plus courante (formulaire login pass)
-        n Multifactor mechanisms, such as those combining passwords and physical
-        tokens
-        n Client SSL certifi cates and/or smartcards
-        n HTTP basic and digest authentication
-        n Windows-integrated authentication using NTLM or Kerberos
-        n Authentication services
-
-        * defaut de design dans les mécanismes d'authentifications
-
-        - Bad Passwords:
-
-        n Very short or blank
-        n Common dictionary words or names
-        n The same as the username
-        n Still set to a default value
-
-        - Brute force (avec dictionnaire possible)
-
-        - Message d'erreur qui donne des informations : "incorrect user" par exemple, on peut essayer plusierus username commun.
-        certaines applications permettent de deviner le username si elle le génére en incrémentant une valeur par exemple  : user1256, user1257, user1258 ...
-
-        - Vulnerable Transmission of Credentials (on utilise pas HTTPS)
-        Le mot de passe peut etre écouté sur :
-
-        . On the user’s local network
-        . Within the user’s IT department
-        . Within the user’s ISP
-        . On the Internet backbone
-        . Within the ISP hosting the application
-        . Within the IT department managing the application
-
-        - Fonction d'oubli du mot de passe
-
-        Font souvent appel à des questionx au réponses publiquement disponible : date naissance, nom jeune fille mère, artiste préféré, ...
-
-        - fonction remember me :
-        Exemple : Si l'application implémente ça avec un cookie envoyé par l'application "RememberUser=daf" qui peut facilement etre spoofé
-
-        - Emprunt d'identité (User Impersonation Functionality)
-        . connaissance d'une URL "caché" non protégée qui permet l'emprunt d'identité : /admin/ImpersonateUser.jsp
-        . implémenté avec un cookie : Ex. "ImpersoanteUser=30" peut etre facilement spoofé
-        . ça peut etre implémenté avec un mot de passe "passe partout" (qui fonctionne avec n'improte quel username, qui si il est faible peut etre cracké par brute force
-
-        * defaut d'implémentation de l'authentification
-
-        - Fail-open login
-
-        une levée d'exception dans le programme fait que l'utilisateur est connecté.
-        Exemple db.getUser() renvoi un "null pointer exception" car "username" vide dans le code suivant :
-
-
-        public Response checkLogin(Session session) {
-        try {
-        String uname = session.getParameter(“username”);
-        String passwd = session.getParameter(“password”);
-        User user = db.getUser(uname, passwd);
-        if (user == null) {
-        // invalid credentials
-        session.setMessage(“Login failed. “);
-        return doLogin(session);
-        }
-        }
-        catch (Exception e) {}
-        // valid user
-        session.setMessage(“Login successful. “);
-        return doMainMenu(session);
-        }
-
-        - Insecure Storage of Credentials :
-        ComputerPhile : How not to store passwords  http://www.youtube.com/watch?v=8ZtInClXe1Q&list=TLvBsEjpu92FHoz0aVrg1g70I5PYWNqNyo
-
-        * Securing Authentication (page 191)
-
-        /////////////////
-
-        Code review en PHP sur l'authentification et la gestion de la session
-
-        ////////////////
-
-        TP, etc ...
-        ============
-
-        WEBGoat :
-        - authentication flaws
-        - Session flaws
-
-        Mutillidae: Using Hydra to Brute Force Web
-        Forms Based Authentication
-        http://www.youtube.com/wat
-        ch?v=SsUUyizhS60
-
-        Mutillidae: Bypass Authentication using SQL
-        Injection
-        http://www.youtube.com/wat
-        ch?v=0_AN5FKsxaw
-
-        Mutillidae: Bypass Authentication via
-        Authentication Token Manipulation
-        http://www.youtube.com/wat
-        ch?v=mEbmturLljU
-
-        Mutillidae: Brute Force Authentication using
-        Burp-Intruder
-        http://www.youtube.com/wat
-        ch?v=frtkNB5G3vI
-
-        Mutillidae: Analyze Session Token
-        Randomness using Burp-Suite Sequencer
-        http://www.youtube.com/wat
-        ch?v=kNSAhKiXctA
-
-
-    </section>
-
+    <h2>Contourner les contrôles coté client.</h2>
+    <small>cours/4 - Contourner validation coté client.odt</small><br>
 </section>
 
+<section>
+    <h2>Attaquer l'authentification et la gestion de la session <b>(TOP OWASP A2)</b></h2>
+    <small>cours/5 - attaque authentification et session.odt</small><br>
+</section>
+
+<section>
+    <h2>Attaquer les controles d'accès <b>(TOP OWASP A7)</b></h2>
+    <small></small><br>
+</section>
+
+<section>
+    <h2>Attaque repository de données <b>(TOP OWASP A1)</b></h2>
+    <small></small><br>
+</section>
+
+<section>
+    <h2>Attaque du backend <b>(TOP OWASP A4)</b></h2>
+    <small></small><br>
+</section>
+
+<section>
+    <h2>Attaque de la logique applicative</h2>
+    <small></small><br>
+</section>
+
+<section>
+    <h2>Attaquer l'utilisateur : XSS <b>(TOP OWASP A3)</b></h2>
+    <small></small><br>
+</section>
+
+<section>
+    <h2>Attaquer l'utilisateur : Autres techniques <b>(TOP OWASP A8)</b></h2>
+    <small></small><br>
+</section>
+
+<section>
+    <h2>Exploitation de la divulgation d'informations <b>(TOP OWASP A6)</b></h2>
+    <small></small><br>
+</section>
+
+<section>
+    <h2>Attaque du serveur d'application <b>(TOP OWASP A5)</b></h2>
+    <small></small><br>
+</section>
+ 
 <!--<section>-->
 
     <!--<section>-->
@@ -937,11 +221,11 @@
 
 <!--</section>-->
 
-<section>
-    https://securityinabox.org/fr
-    https://pressfreedomfoundation.org/encryption-works
-    https://panopticlick.eff.org/index.php
-</section>
+<!--<section>-->
+    <!--https://securityinabox.org/fr-->
+    <!--https://pressfreedomfoundation.org/encryption-works-->
+    <!--https://panopticlick.eff.org/index.php-->
+<!--</section>-->
 
 </div>
 
