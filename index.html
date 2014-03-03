@@ -788,17 +788,99 @@
 <section>
 
     <section>
-        Attaquer l'authentification  et la gestion de la session :
-
+        Attaquer l'authentification  et la gestion de la session (TOP OWASP A2)
     </section>
 
     <section>
 
+        Les technologies d'authentification :
+
+        n HTML forms-based authentication <-- la plus courante (formulaire login pass)
+        n Multifactor mechanisms, such as those combining passwords and physical
+        tokens
+        n Client SSL certifi cates and/or smartcards
+        n HTTP basic and digest authentication
+        n Windows-integrated authentication using NTLM or Kerberos
+        n Authentication services
+
+        * defaut de design dans les mécanismes d'authentifications
+
+        - Bad Passwords:
+
+        n Very short or blank
+        n Common dictionary words or names
+        n The same as the username
+        n Still set to a default value
+
+        - Brute force (avec dictionnaire possible)
+
+        - Message d'erreur qui donne des informations : "incorrect user" par exemple, on peut essayer plusierus username commun.
+        certaines applications permettent de deviner le username si elle le génére en incrémentant une valeur par exemple  : user1256, user1257, user1258 ...
+
+        - Vulnerable Transmission of Credentials (on utilise pas HTTPS)
+        Le mot de passe peut etre écouté sur :
+
+        . On the user’s local network
+        . Within the user’s IT department
+        . Within the user’s ISP
+        . On the Internet backbone
+        . Within the ISP hosting the application
+        . Within the IT department managing the application
+
+        - Fonction d'oubli du mot de passe
+
+        Font souvent appel à des questionx au réponses publiquement disponible : date naissance, nom jeune fille mère, artiste préféré, ...
+
+        - fonction remember me :
+        Exemple : Si l'application implémente ça avec un cookie envoyé par l'application "RememberUser=daf" qui peut facilement etre spoofé
+
+        - Emprunt d'identité (User Impersonation Functionality)
+        . connaissance d'une URL "caché" non protégée qui permet l'emprunt d'identité : /admin/ImpersonateUser.jsp
+        . implémenté avec un cookie : Ex. "ImpersoanteUser=30" peut etre facilement spoofé
+        . ça peut etre implémenté avec un mot de passe "passe partout" (qui fonctionne avec n'improte quel username, qui si il est faible peut etre cracké par brute force
+
+        * defaut d'implémentation de l'authentification
+
+        - Fail-open login
+
+        une levée d'exception dans le programme fait que l'utilisateur est connecté.
+        Exemple db.getUser() renvoi un "null pointer exception" car "username" vide dans le code suivant :
+
+
+        public Response checkLogin(Session session) {
+        try {
+        String uname = session.getParameter(“username”);
+        String passwd = session.getParameter(“password”);
+        User user = db.getUser(uname, passwd);
+        if (user == null) {
+        // invalid credentials
+        session.setMessage(“Login failed. “);
+        return doLogin(session);
+        }
+        }
+        catch (Exception e) {}
+        // valid user
+        session.setMessage(“Login successful. “);
+        return doMainMenu(session);
+        }
+
+        - Insecure Storage of Credentials :
+        ComputerPhile : How not to store passwords  http://www.youtube.com/watch?v=8ZtInClXe1Q&list=TLvBsEjpu92FHoz0aVrg1g70I5PYWNqNyo
+
+        * Securing Authentication (page 191)
+
+        /////////////////
+
+        Code review en PHP sur l'authentification et la gestion de la session
+
+        ////////////////
 
         TP, etc ...
         ============
 
-
+        WEBGoat :
+        - authentication flaws
+        - Session flaws
 
         Mutillidae: Using Hydra to Brute Force Web
         Forms Based Authentication

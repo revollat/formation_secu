@@ -7,7 +7,8 @@ Vidéo : https://www.owasp.org/index.php/OWASP_Appsec_Tutorial_Series
 ============================================================================================================================
 
 A1: Injection (SQL, shell, PHP, ...)
-http://www.youtube.com/watch?v=pypTYPaU7mM
+OWASP : http://www.youtube.com/watch?v=pypTYPaU7mM
+Computer phile : http://www.youtube.com/watch?v=_jKylhJtPmI&list=TL5FWVzem2QE-w2dbxon9WrHeqS1na15NI
 (Dans chapitre Attaque data store)
 
 ============================================================================================================================
@@ -18,8 +19,9 @@ A2: Authentification / Session
 ============================================================================================================================
 
 A3: XSS
-cf. http://scriptalert1.com/fr.html (ou doc word xss/doc dans ce dossier)
-http://www.youtube.com/watch?v=_Z9RQSnf8-g
+cf. http://scriptalert1.com/fr.html (ou doc word xss.doc dans ce dossier)
+OWASP : http://www.youtube.com/watch?v=_Z9RQSnf8-g
+Computer Phile : http://www.youtube.com/watch?v=L5l9lSnNMxg&list=TLmIqIKyS6HSzWgAJRTWxFxVX3y0-Bbb74
 (Dans chapitre Attaque de l'utilisateur : XSS)
 
 
